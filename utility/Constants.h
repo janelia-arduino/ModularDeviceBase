@@ -5,8 +5,8 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#ifndef MODULAR_DEVICE_CONSTANTS_H
+#define MODULAR_DEVICE_CONSTANTS_H
 #include "ConstantVariable.h"
 #include "ModularServer.h"
 

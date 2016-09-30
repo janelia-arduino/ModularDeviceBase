@@ -21,7 +21,7 @@
 #include "Functor.h"
 #include "ModularServer.h"
 
-#include "Constants.h"
+#include "utility/Constants.h"
 
 
 class ModularDevice
