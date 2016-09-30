@@ -1,4 +1,4 @@
-#ModularServer
+#ModularDevice
 
 Authors:
 
@@ -7,10 +7,6 @@ Authors:
 License:
 
     BSD
-
-This firmware requires at least 3KB of SRAM and 50KB of flash
-memory, so it needs at least Arduino Mega level resources. Known to
-work with the Arduino Mega 2560 and Teensy 3.2.
 
 [Examples](./examples)
 
