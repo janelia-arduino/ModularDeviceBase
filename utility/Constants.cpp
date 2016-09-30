@@ -8,6 +8,8 @@
 #include "Constants.h"
 
 
+namespace ModularDevice
+{
 namespace constants
 {
 const size_t baudrate = 9600;
@@ -81,4 +83,5 @@ const Modular::HardwareInfo hardware_info =
 // Methods
 
 // Errors
+}
 }

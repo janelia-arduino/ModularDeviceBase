@@ -11,6 +11,8 @@
 #include "ModularServer.h"
 
 
+namespace ModularDevice
+{
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
@@ -44,5 +46,6 @@ extern const Modular::HardwareInfo hardware_info_2;
 // Methods
 
 // Errors
+}
 }
 #endif
