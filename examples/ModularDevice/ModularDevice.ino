@@ -14,15 +14,15 @@
 #include "ModularDevice.h"
 
 
-ModularDevice modular_device;
+ModularDevice dev;
 
 void setup()
 {
-  modular_device.setup();
-  modular_device.startServer();
+  dev.setup();
+  dev.startServer();
 }
 
 void loop()
 {
-  modular_device.update();
+  dev.update();
 }

@@ -32,7 +32,7 @@ public:
   virtual void update();
   virtual void startServer();
 
-  Modular::ModularServer modular_server_;
+  modular_server::ModularServer modular_server_;
 
 private:
 

@@ -11,7 +11,7 @@
 #include "ModularServer.h"
 
 
-namespace ModularDevice
+namespace modular_device
 {
 namespace constants
 {
@@ -25,16 +25,16 @@ extern const size_t baudrate;
 extern ConstantString device_name;
 
 extern ConstantString firmware_name;
-extern const Modular::FirmwareInfo firmware_info;
+extern const modular_server::FirmwareInfo firmware_info;
 
 extern ConstantString form_factor;
 extern ConstantString hardware_name;
-extern const Modular::HardwareInfo hardware_info;
+extern const modular_server::HardwareInfo hardware_info;
 
 #if defined(__MK20DX128__) || defined(__MK20DX256__)
 
 extern ConstantString hardware_name_2;
-extern const Modular::HardwareInfo hardware_info_2;
+extern const modular_server::HardwareInfo hardware_info_2;
 
 #endif
 

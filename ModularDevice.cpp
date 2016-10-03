@@ -17,13 +17,13 @@ void ModularDevice::setup()
   // Pin Setup
 
   // Device Info
-  modular_server_.setDeviceName(constants::device_name);
-  modular_server_.setFormFactor(constants::form_factor);
-  modular_server_.addFirmwareInfo(constants::firmware_info);
-  modular_server_.addHardwareInfo(constants::hardware_info);
+  modular_server_.setDeviceName(modular_device::constants::device_name);
+  modular_server_.setFormFactor(modular_device::constants::form_factor);
+  modular_server_.addFirmwareInfo(modular_device::constants::firmware_info);
+  modular_server_.addHardwareInfo(modular_device::constants::hardware_info);
 
 #if defined(__MK20DX128__) || defined(__MK20DX256__)
-  modular_server_.addHardwareInfo(constants::hardware_info_2);
+  modular_server_.addHardwareInfo(modular_device::constants::hardware_info_2);
 #endif
 
   // Add Server Streams
@@ -38,7 +38,7 @@ void ModularDevice::setup()
   // Methods
 
   // Setup Streams
-  Serial.begin(constants::baudrate);
+  Serial.begin(modular_device::constants::baudrate);
 
 }
 
