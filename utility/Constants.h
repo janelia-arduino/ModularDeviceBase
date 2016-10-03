@@ -31,12 +31,7 @@ extern ConstantString form_factor;
 extern ConstantString hardware_name;
 extern const modular_server::HardwareInfo hardware_info;
 
-#if defined(__MK20DX128__) || defined(__MK20DX256__)
-
-extern ConstantString hardware_name_2;
-extern const modular_server::HardwareInfo hardware_info_2;
-
-#endif
+// Units
 
 // Fields
 // Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
@@ -48,4 +43,6 @@ extern const modular_server::HardwareInfo hardware_info_2;
 // Errors
 }
 }
+#include "5x3.h"
+#include "3x2.h"
 #endif

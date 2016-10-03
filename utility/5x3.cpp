@@ -1,29 +1,28 @@
 // ----------------------------------------------------------------------------
-// Constants.cpp
+// 5x3.cpp
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "Constants.h"
+#include "5x3.h"
 
+
+#if defined(__AVR_ATmega2560__)
 
 namespace modular_device
 {
 namespace constants
 {
-const size_t baudrate = 9600;
+CONSTANT_STRING(form_factor,"5x3");
 
-CONSTANT_STRING(device_name,"modular_device");
-
-CONSTANT_STRING(firmware_name,"ModularDevice");
-// Use semantic versioning http://semver.org/
-const modular_server::FirmwareInfo firmware_info =
+CONSTANT_STRING(hardware_name,"Mega2560");
+const modular_server::HardwareInfo hardware_info =
   {
-    .name_ptr=&firmware_name,
-    .version_major=1,
+    .name_ptr=&hardware_name,
+    .part_number=0,
+    .version_major=0,
     .version_minor=0,
-    .version_patch=0,
   };
 
 // Units
@@ -37,3 +36,4 @@ const modular_server::FirmwareInfo firmware_info =
 // Errors
 }
 }
+#endif

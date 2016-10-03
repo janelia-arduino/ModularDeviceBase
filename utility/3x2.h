@@ -1,34 +1,28 @@
 // ----------------------------------------------------------------------------
-// Constants.cpp
+// 3x2.h
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
+#ifndef MODULAR_DEVICE_3X2_CONSTANTS_H
+#define MODULAR_DEVICE_3X2_CONSTANTS_H
 #include "Constants.h"
 
+
+#if defined(__MK20DX256__)
 
 namespace modular_device
 {
 namespace constants
 {
-const size_t baudrate = 9600;
-
-CONSTANT_STRING(device_name,"modular_device");
-
-CONSTANT_STRING(firmware_name,"ModularDevice");
-// Use semantic versioning http://semver.org/
-const modular_server::FirmwareInfo firmware_info =
-  {
-    .name_ptr=&firmware_name,
-    .version_major=1,
-    .version_minor=0,
-    .version_patch=0,
-  };
+extern ConstantString hardware_name_2;
+extern const modular_server::HardwareInfo hardware_info_2;
 
 // Units
 
 // Fields
+// Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
 
 // Parameters
 
@@ -37,3 +31,5 @@ const modular_server::FirmwareInfo firmware_info =
 // Errors
 }
 }
+#endif
+#endif
