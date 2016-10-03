@@ -25,8 +25,6 @@
 #include "utility/Constants.h"
 
 
-using namespace modular_device;
-
 class ModularDevice
 {
 public:

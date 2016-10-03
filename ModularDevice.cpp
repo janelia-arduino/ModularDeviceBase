@@ -8,6 +8,8 @@
 #include "ModularDevice.h"
 
 
+using namespace modular_device;
+
 ModularDevice::ModularDevice()
 {
 }
