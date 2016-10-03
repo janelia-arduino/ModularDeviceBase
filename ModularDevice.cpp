@@ -16,9 +16,11 @@ void ModularDevice::setup()
 {
   // Pin Setup
 
-  // Device Info
+  // Set Device ID
   modular_server_.setDeviceName(modular_device::constants::device_name);
   modular_server_.setFormFactor(modular_device::constants::form_factor);
+
+  // Add Device Info
   modular_server_.addFirmwareInfo(modular_device::constants::firmware_info);
   modular_server_.addHardwareInfo(modular_device::constants::hardware_info);
 
@@ -29,7 +31,7 @@ void ModularDevice::setup()
   // Add Server Streams
   modular_server_.addServerStream(Serial);
 
-  // Set Storage
+  // Add Storage
 
   // Fields
 
