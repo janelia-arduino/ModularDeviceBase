@@ -35,6 +35,10 @@ public:
 
   modular_server::ModularServer modular_server_;
 
+  modular_server::Field fields_[modular_device::constants::FIELD_COUNT_MAX];
+  modular_server::Parameter parameters_[modular_device::constants::PARAMETER_COUNT_MAX];
+  modular_server::Method methods_[modular_device::constants::METHOD_COUNT_MAX];
+
 private:
 
   // Callbacks
