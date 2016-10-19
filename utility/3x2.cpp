@@ -42,6 +42,8 @@ const modular_server::HardwareInfo hardware_info_2 =
 
 // Methods
 
+// Interrupts
+
 // Errors
 }
 }

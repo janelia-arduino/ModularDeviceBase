@@ -34,6 +34,8 @@ const modular_server::FirmwareInfo firmware_info =
 
 // Methods
 
+// Interrupts
+
 // Errors
 }
 }

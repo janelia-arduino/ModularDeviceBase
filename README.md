@@ -19,7 +19,8 @@ License:
     "firmware":["ModularDevice"],
     "methods":[],
     "parameters":[],
-    "fields":[]
+    "fields":[],
+    "interrupts":[]
   }
 }
 ```

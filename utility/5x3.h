@@ -26,6 +26,8 @@ namespace constants
 
 // Methods
 
+// Interrupts
+
 // Errors
 }
 }
