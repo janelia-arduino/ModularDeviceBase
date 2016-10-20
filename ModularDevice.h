@@ -38,11 +38,11 @@ public:
   modular_server::Field fields_[modular_device::constants::FIELD_COUNT_MAX];
   modular_server::Parameter parameters_[modular_device::constants::PARAMETER_COUNT_MAX];
   modular_server::Method methods_[modular_device::constants::METHOD_COUNT_MAX];
-  modular_server::Interrupt interrupts_[modular_device::constants::INTERRUPT_COUNT_MAX];
+  modular_server::Callback callbacks_[modular_device::constants::CALLBACK_COUNT_MAX];
 
 private:
 
-  // Callbacks
+  // Functors
 
 };
 

@@ -20,7 +20,7 @@ License:
     "methods":[],
     "parameters":[],
     "fields":[],
-    "interrupts":[]
+    "callbacks":[]
   }
 }
 ```

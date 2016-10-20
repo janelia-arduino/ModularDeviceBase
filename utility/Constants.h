@@ -19,7 +19,7 @@ namespace constants
 enum{FIELD_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=1};
 enum{METHOD_COUNT_MAX=1};
-enum{INTERRUPT_COUNT_MAX=1};
+enum{CALLBACK_COUNT_MAX=1};
 
 extern const size_t baudrate;
 
@@ -41,7 +41,7 @@ extern const modular_server::HardwareInfo hardware_info;
 
 // Methods
 
-// Interrupts
+// Callbacks
 
 // Errors
 }
