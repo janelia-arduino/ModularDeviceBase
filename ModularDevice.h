@@ -42,7 +42,7 @@ public:
 
 private:
 
-  // Functors
+  // Handlers
 
 };
 
