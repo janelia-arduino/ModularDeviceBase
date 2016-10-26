@@ -12,7 +12,7 @@ namespace modular_device
 {
 namespace constants
 {
-const size_t baudrate = 9600;
+const long baudrate = 115200;
 
 CONSTANT_STRING(device_name,"modular_device");
 
