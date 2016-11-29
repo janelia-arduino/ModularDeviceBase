@@ -16,10 +16,12 @@ namespace modular_device
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{FIELD_COUNT_MAX=1};
+enum{PROPERTY_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=1};
-enum{METHOD_COUNT_MAX=1};
+enum{FUNCTION_COUNT_MAX=1};
 enum{CALLBACK_COUNT_MAX=1};
+
+enum{INTERRUPT_COUNT_MAX=1};
 
 extern const long baudrate;
 
@@ -32,14 +34,16 @@ extern ConstantString form_factor;
 extern ConstantString hardware_name;
 extern const modular_server::HardwareInfo hardware_info;
 
+// Interrupts
+
 // Units
 
-// Fields
-// Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+// Properties
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
 
 // Parameters
 
-// Methods
+// Functions
 
 // Callbacks
 

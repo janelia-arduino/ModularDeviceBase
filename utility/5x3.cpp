@@ -27,11 +27,11 @@ const modular_server::HardwareInfo hardware_info =
 
 // Units
 
-// Fields
+// Properties
 
 // Parameters
 
-// Methods
+// Functions
 
 // Callbacks
 

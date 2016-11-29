@@ -28,25 +28,36 @@ void ModularDevice::setup()
   modular_server_.setDeviceName(constants::device_name);
   modular_server_.setFormFactor(constants::form_factor);
 
-  // Add Hardware Info
-  modular_server_.addHardwareInfo(constants::hardware_info);
+  // Add Hardware
+  modular_server_.addHardware(constants::hardware_info,
+                              interrupts_);
 
 #if defined(__MK20DX128__) || defined(__MK20DX256__)
-  modular_server_.addHardwareInfo(constants::hardware_info_2);
+  modular_server_.addHardwareInfo(constants::teensy_hardware_info,
+                                  teensy_interrupts_);
+#endif
+
+  // Interrupts
+#if defined(__MK20DX128__) || defined(__MK20DX256__)
+  modular_server::Interrupt & bnc_a_interrupt = modular_server_.createInterrupt(constants::bnc_a_interrupt_name,
+                                                                                constants::bnc_a_pin);
+
+  modular_server::Interrupt & bnc_b_interrupt = modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
+                                                                                constants::bnc_b_pin);
 #endif
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
-                              fields_,
+                              properties_,
                               parameters_,
-                              methods_,
+                              functions_,
                               callbacks_);
 
-  // Fields
+  // Properties
 
   // Parameters
 
-  // Methods
+  // Functions
 
   // Callbacks
 
@@ -78,7 +89,7 @@ void ModularDevice::update()
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
 //
-// modular_server_.field(field_name).getValue(value) value type must match the field default type
-// modular_server_.field(field_name).setValue(value) value type must match the field default type
-// modular_server_.field(field_name).getElementValue(value) value type must match the field array element default type
-// modular_server_.field(field_name).setElementValue(value) value type must match the field array element default type
+// modular_server_.property(property_name).getValue(value) value type must match the property default type
+// modular_server_.property(property_name).setValue(value) value type must match the property default type
+// modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
+// modular_server_.property(property_name).setElementValue(value) value type must match the property array element default type

@@ -16,17 +16,26 @@ namespace modular_device
 {
 namespace constants
 {
-extern ConstantString hardware_name_2;
-extern const modular_server::HardwareInfo hardware_info_2;
+enum{TEENSY_INTERRUPT_COUNT_MAX=2};
+
+extern ConstantString teensy_hardware_name;
+extern const modular_server::HardwareInfo teensy_hardware_info;
+
+// Interrupts
+extern ConstantString bnc_a_interrupt_name;
+extern const size_t bnc_a_pin;
+
+extern ConstantString bnc_b_interrupt_name;
+extern const size_t bnc_b_pin;
 
 // Units
 
-// Fields
-// Field values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+// Properties
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
 
 // Parameters
 
-// Methods
+// Functions
 
 // Callbacks
 

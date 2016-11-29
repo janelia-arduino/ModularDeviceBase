@@ -17,9 +17,9 @@ License:
   "id":"getApi",
   "result":{
     "firmware":["ModularDevice"],
-    "methods":[],
+    "functions":[],
     "parameters":[],
-    "fields":[],
+    "properties":[],
     "callbacks":[]
   }
 }
