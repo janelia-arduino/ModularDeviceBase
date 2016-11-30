@@ -33,8 +33,8 @@ void ModularDevice::setup()
                               interrupts_);
 
 #if defined(__MK20DX128__) || defined(__MK20DX256__)
-  modular_server_.addHardwareInfo(constants::teensy_hardware_info,
-                                  teensy_interrupts_);
+  modular_server_.addHardware(constants::teensy_hardware_info,
+                              teensy_interrupts_);
 #endif
 
   // Interrupts
