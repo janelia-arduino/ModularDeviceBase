@@ -14,9 +14,9 @@ namespace constants
 {
 const long baudrate = 115200;
 
-CONSTANT_STRING(device_name,"modular_device");
+CONSTANT_STRING(device_name,"modular_device_base");
 
-CONSTANT_STRING(firmware_name,"ModularDevice");
+CONSTANT_STRING(firmware_name,"ModularDeviceBase");
 // Use semantic versioning http://semver.org/
 const modular_server::FirmwareInfo firmware_info =
   {

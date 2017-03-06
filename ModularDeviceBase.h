@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// ModularDevice.h
+// ModularDeviceBase.h
 //
 //
 // Authors:
@@ -27,10 +27,10 @@
 #include "utility/Constants.h"
 
 
-class ModularDevice
+class ModularDeviceBase
 {
 public:
-  ModularDevice();
+  ModularDeviceBase();
   virtual void setup();
   virtual void update();
   virtual void startServer();

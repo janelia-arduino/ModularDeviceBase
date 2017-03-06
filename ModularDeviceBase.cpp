@@ -1,20 +1,20 @@
 // ----------------------------------------------------------------------------
-// ModularDevice.cpp
+// ModularDeviceBase.cpp
 //
 //
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "ModularDevice.h"
+#include "ModularDeviceBase.h"
 
 
 using namespace modular_device;
 
-ModularDevice::ModularDevice()
+ModularDeviceBase::ModularDeviceBase()
 {
 }
 
-void ModularDevice::setup()
+void ModularDeviceBase::setup()
 {
   // Server Setup
   modular_server_.setup();
@@ -66,13 +66,13 @@ void ModularDevice::setup()
 
 }
 
-void ModularDevice::startServer()
+void ModularDeviceBase::startServer()
 {
   // Start Modular Device Server
   modular_server_.startServer();
 }
 
-void ModularDevice::update()
+void ModularDeviceBase::update()
 {
   modular_server_.handleServerRequests();
 }

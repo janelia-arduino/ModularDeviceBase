@@ -14,10 +14,10 @@
 #include "FunctorCallbacks.h"
 
 #include "ModularServer.h"
-#include "ModularDevice.h"
+#include "ModularDeviceBase.h"
 
 
-ModularDevice dev;
+ModularDeviceBase dev;
 
 void setup()
 {

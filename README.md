@@ -1,4 +1,4 @@
-#ModularDevice
+#ModularDeviceBase
 
 Authors:
 
@@ -16,7 +16,7 @@ License:
 {
   "id":"getApi",
   "result":{
-    "firmware":["ModularDevice"],
+    "firmware":["ModularDeviceBase"],
     "functions":[],
     "parameters":[],
     "properties":[],
