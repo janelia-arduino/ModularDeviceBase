@@ -5,13 +5,13 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef MODULAR_DEVICE_CONSTANTS_H
-#define MODULAR_DEVICE_CONSTANTS_H
+#ifndef MODULAR_DEVICE_BASE_CONSTANTS_H
+#define MODULAR_DEVICE_BASE_CONSTANTS_H
 #include "ConstantVariable.h"
 #include "ModularServer.h"
 
 
-namespace modular_device
+namespace modular_device_base
 {
 namespace constants
 {
@@ -21,8 +21,6 @@ enum{PARAMETER_COUNT_MAX=1};
 enum{FUNCTION_COUNT_MAX=1};
 enum{CALLBACK_COUNT_MAX=1};
 
-enum{INTERRUPT_COUNT_MAX=1};
-
 extern const long baudrate;
 
 extern ConstantString device_name;
@@ -31,6 +29,10 @@ extern ConstantString firmware_name;
 extern const modular_server::FirmwareInfo firmware_info;
 
 extern ConstantString form_factor;
+
+extern ConstantString processor_hardware_name;
+extern const modular_server::HardwareInfo processor_hardware_info;
+
 extern ConstantString hardware_name;
 extern const modular_server::HardwareInfo hardware_info;
 

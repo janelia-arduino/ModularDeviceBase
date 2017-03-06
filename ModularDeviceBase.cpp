@@ -8,7 +8,7 @@
 #include "ModularDeviceBase.h"
 
 
-using namespace modular_device;
+using namespace modular_device_base;
 
 ModularDeviceBase::ModularDeviceBase()
 {
@@ -29,22 +29,18 @@ void ModularDeviceBase::setup()
   modular_server_.setFormFactor(constants::form_factor);
 
   // Add Hardware
+  modular_server_.addHardware(constants::processor_hardware_info,
+                              processor_interrupts_);
+
   modular_server_.addHardware(constants::hardware_info,
                               interrupts_);
 
-#if defined(__MK20DX128__) || defined(__MK20DX256__)
-  modular_server_.addHardware(constants::teensy_hardware_info,
-                              teensy_interrupts_);
-#endif
-
   // Interrupts
-#if defined(__MK20DX128__) || defined(__MK20DX256__)
   modular_server::Interrupt & bnc_a_interrupt = modular_server_.createInterrupt(constants::bnc_a_interrupt_name,
                                                                                 constants::bnc_a_pin);
 
   modular_server::Interrupt & bnc_b_interrupt = modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
                                                                                 constants::bnc_b_pin);
-#endif
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,

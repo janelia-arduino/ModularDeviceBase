@@ -8,7 +8,7 @@
 #include "Constants.h"
 
 
-namespace modular_device
+namespace modular_device_base
 {
 namespace constants
 {
@@ -22,7 +22,7 @@ const modular_server::FirmwareInfo firmware_info =
   {
     .name_ptr=&firmware_name,
     .version_major=2,
-    .version_minor=0,
+    .version_minor=1,
     .version_patch=0,
   };
 

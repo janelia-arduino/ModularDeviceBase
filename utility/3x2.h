@@ -5,21 +5,20 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#ifndef MODULAR_DEVICE_3X2_CONSTANTS_H
-#define MODULAR_DEVICE_3X2_CONSTANTS_H
+#ifndef MODULAR_DEVICE_BASE_3X2_CONSTANTS_H
+#define MODULAR_DEVICE_BASE_3X2_CONSTANTS_H
 #include "Constants.h"
 
 
 #if defined(__MK20DX256__)
 
-namespace modular_device
+namespace modular_device_base
 {
 namespace constants
 {
-enum{TEENSY_INTERRUPT_COUNT_MAX=2};
-
-extern ConstantString teensy_hardware_name;
-extern const modular_server::HardwareInfo teensy_hardware_info;
+//MAX values must be >= 1, >= created/copied count, < RAM limit
+enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
+enum{INTERRUPT_COUNT_MAX=2};
 
 // Interrupts
 extern ConstantString bnc_a_interrupt_name;

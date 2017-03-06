@@ -10,25 +10,25 @@
 
 #if defined(__MK20DX256__)
 
-namespace modular_device
+namespace modular_device_base
 {
 namespace constants
 {
 CONSTANT_STRING(form_factor,"3x2");
 
-CONSTANT_STRING(hardware_name,"Teensy");
-const modular_server::HardwareInfo hardware_info =
+CONSTANT_STRING(processor_hardware_name,"Teensy");
+const modular_server::HardwareInfo processor_hardware_info =
   {
-    .name_ptr=&hardware_name,
+    .name_ptr=&processor_hardware_name,
     .part_number=0,
     .version_major=3,
     .version_minor=2,
   };
 
-CONSTANT_STRING(teensy_hardware_name,"modular_device_teensy");
-const modular_server::HardwareInfo teensy_hardware_info =
+CONSTANT_STRING(hardware_name,"modular_device_base");
+const modular_server::HardwareInfo hardware_info =
   {
-    .name_ptr=&teensy_hardware_name,
+    .name_ptr=&hardware_name,
     .part_number=1001,
     .version_major=1,
     .version_minor=1,
