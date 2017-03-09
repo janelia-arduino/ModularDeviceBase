@@ -34,6 +34,12 @@ const modular_server::HardwareInfo hardware_info =
     .version_minor=1,
   };
 
+HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
+  {
+    &Serial1,
+    &Serial3,
+  };
+
 // Interrupts
 CONSTANT_STRING(bnc_a_interrupt_name,"bnc_a");
 const size_t bnc_a_pin = 33;

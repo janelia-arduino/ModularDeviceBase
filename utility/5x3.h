@@ -19,6 +19,9 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=2};
+enum{SERIAL_STREAM_COUNT=4};
+
+extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 
 // Interrupts
 extern ConstantString bnc_a_interrupt_name;

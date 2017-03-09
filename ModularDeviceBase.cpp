@@ -23,6 +23,10 @@ void ModularDeviceBase::setup()
 
   // Add Server Streams
   modular_server_.addServerStream(Serial);
+  for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
+  {
+    modular_server_.addServerStream(*(constants::serial_stream_ptrs[i]));
+  }
 
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
@@ -59,6 +63,10 @@ void ModularDeviceBase::setup()
 
   // Begin Streams
   Serial.begin(constants::baudrate);
+  for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
+  {
+    constants::serial_stream_ptrs[i]->begin(constants::baudrate);
+  }
 
 }
 
