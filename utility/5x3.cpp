@@ -62,4 +62,42 @@ const size_t bnc_b_pin = 56;
 // Errors
 }
 }
+
+#elif defined(__AVR_ATmega2560__)
+
+namespace modular_device_base
+{
+namespace constants
+{
+CONSTANT_STRING(form_factor,"5x3");
+
+CONSTANT_STRING(processor_hardware_name,"Mega2560");
+const modular_server::HardwareInfo processor_hardware_info =
+  {
+    .name_ptr=&processor_hardware_name,
+    .part_number=0,
+    .version_major=0,
+    .version_minor=0,
+  };
+
+HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
+  {
+    &Serial1,
+    &Serial2,
+    &Serial3,
+  };
+
+// Units
+
+// Properties
+
+// Parameters
+
+// Functions
+
+// Callbacks
+
+// Errors
+}
+}
 #endif

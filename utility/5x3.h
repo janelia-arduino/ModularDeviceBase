@@ -44,5 +44,33 @@ extern const size_t bnc_b_pin;
 // Errors
 }
 }
+
+#elif defined(__AVR_ATmega2560__)
+
+namespace modular_device_base
+{
+namespace constants
+{
+enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
+enum{INTERRUPT_COUNT_MAX=1};
+enum{SERIAL_STREAM_COUNT=3};
+
+extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
+
+
+// Units
+
+// Properties
+// Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *
+
+// Parameters
+
+// Functions
+
+// Callbacks
+
+// Errors
+}
+}
 #endif
 #endif
