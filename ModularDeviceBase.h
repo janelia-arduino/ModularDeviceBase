@@ -21,6 +21,7 @@
 #include "Functor.h"
 #include "IndexedContainer.h"
 #include "FunctorCallbacks.h"
+#include "ModularClient.h"
 
 #include "ModularServer.h"
 
@@ -35,7 +36,14 @@ public:
   virtual void update();
   virtual void startServer();
 
+  void forward(ArduinoJson::JsonArray & address_array,
+               ArduinoJson::JsonArray & request_array);
+
+protected:
+
   modular_server::ModularServer modular_server_;
+
+private:
 
   modular_server::Interrupt processor_interrupts_[modular_device_base::constants::PROCESSOR_INTERRUPT_COUNT_MAX];
 
@@ -46,9 +54,8 @@ public:
   modular_server::Function functions_[modular_device_base::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[modular_device_base::constants::CALLBACK_COUNT_MAX];
 
-private:
-
   // Handlers
+  void forwardHandler();
 
 };
 

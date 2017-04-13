@@ -17,7 +17,7 @@ namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROPERTY_COUNT_MAX=1};
-enum{PARAMETER_COUNT_MAX=1};
+enum{PARAMETER_COUNT_MAX=2};
 enum{FUNCTION_COUNT_MAX=1};
 enum{CALLBACK_COUNT_MAX=1};
 
@@ -44,8 +44,16 @@ extern const modular_server::HardwareInfo hardware_info;
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
 
 // Parameters
+extern ConstantString address_parameter_name;
+extern const long address_array_length_min;
+extern const long address_array_length_max;
+
+extern ConstantString request_parameter_name;
+extern const long request_array_length_min;
+extern const long request_array_length_max;
 
 // Functions
+extern ConstantString forward_function_name;
 
 // Callbacks
 

@@ -39,6 +39,11 @@ HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
     &Serial1,
     &Serial3,
   };
+const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
+  {
+    0,
+    7,
+  };
 
 // Interrupts
 CONSTANT_STRING(bnc_a_interrupt_name,"bnc_a");
@@ -52,6 +57,11 @@ const size_t bnc_b_pin = 32;
 // Properties
 
 // Parameters
+modular_server::SubsetMemberType address_subset[ADDRESS_SUBSET_LENGTH] =
+  {
+    {.l=1},
+    {.l=3},
+  };
 
 // Functions
 

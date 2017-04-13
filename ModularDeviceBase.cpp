@@ -60,8 +60,19 @@ void ModularDeviceBase::setup()
   // Properties
 
   // Parameters
+  modular_server::Parameter & address_parameter = modular_server_.createParameter(constants::address_parameter_name);
+  address_parameter.setSubset(constants::address_subset);
+  address_parameter.setArrayLengthRange(constants::address_array_length_min,constants::address_array_length_max);
+
+  modular_server::Parameter & request_parameter = modular_server_.createParameter(constants::request_parameter_name);
+  request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
 
   // Functions
+  modular_server::Function & forward_function = modular_server_.createFunction(constants::forward_function_name);
+  forward_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardHandler));
+  forward_function.addParameter(address_parameter);
+  forward_function.addParameter(request_parameter);
+  forward_function.setReturnTypeObject();
 
   // Callbacks
 
@@ -70,6 +81,7 @@ void ModularDeviceBase::setup()
   for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
   {
     constants::serial_stream_ptrs[i]->begin(constants::baudrate);
+    pinMode(constants::serial_rx_pins[i],INPUT_PULLUP);
   }
 
 }
@@ -83,6 +95,11 @@ void ModularDeviceBase::startServer()
 void ModularDeviceBase::update()
 {
   modular_server_.handleServerRequests();
+}
+
+void ModularDeviceBase::forward(ArduinoJson::JsonArray & address_array,
+                                ArduinoJson::JsonArray & request_array)
+{
 }
 
 // Handlers must be non-blocking (avoid 'delay')
@@ -101,3 +118,20 @@ void ModularDeviceBase::update()
 // modular_server_.property(property_name).setValue(value) value type must match the property default type
 // modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(value) value type must match the property array element default type
+
+void ModularDeviceBase::forwardHandler()
+{
+  ArduinoJson::JsonArray * address_array_ptr;
+  modular_server_.parameter(constants::address_parameter_name).getValue(address_array_ptr);
+
+  ArduinoJson::JsonArray * request_array_ptr;
+  modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
+
+  forward(*address_array_ptr,*request_array_ptr);
+
+  modular_server_.response().writeResultKey();
+  modular_server_.response().beginObject();
+  modular_server_.response().endObject();
+
+}
+

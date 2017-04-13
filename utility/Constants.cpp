@@ -33,8 +33,16 @@ const modular_server::FirmwareInfo firmware_info =
 // Properties
 
 // Parameters
+CONSTANT_STRING(address_parameter_name,"address");
+const long address_array_length_min = 1;
+const long address_array_length_max = 8;
+
+CONSTANT_STRING(request_parameter_name,"request");
+const long request_array_length_min = 1;
+const long request_array_length_max = modular_server::constants::FUNCTION_PARAMETER_COUNT_MAX;
 
 // Functions
+CONSTANT_STRING(forward_function_name,"forward");
 
 // Callbacks
 
