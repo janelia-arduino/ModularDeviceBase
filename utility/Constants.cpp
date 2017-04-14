@@ -34,6 +34,8 @@ const modular_server::FirmwareInfo firmware_info =
 
 // Parameters
 CONSTANT_STRING(address_parameter_name,"address");
+const long address_min = 1;
+const long address_max = modular_server::constants::SERVER_STREAM_COUNT_MAX;
 const long address_array_length_min = 1;
 const long address_array_length_max = 8;
 

@@ -45,6 +45,8 @@ extern const modular_server::HardwareInfo hardware_info;
 
 // Parameters
 extern ConstantString address_parameter_name;
+extern const long address_min;
+extern const long address_max;
 extern const long address_array_length_min;
 extern const long address_array_length_max;
 

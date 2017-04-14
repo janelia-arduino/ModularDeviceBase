@@ -45,6 +45,12 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
     7,
   };
 
+const size_t stream_ids[STREAM_COUNT] =
+  {
+    1,
+    3,
+  };
+
 // Interrupts
 CONSTANT_STRING(bnc_a_interrupt_name,"bnc_a");
 const size_t bnc_a_pin = 33;
@@ -57,11 +63,6 @@ const size_t bnc_b_pin = 32;
 // Properties
 
 // Parameters
-modular_server::SubsetMemberType address_subset[ADDRESS_SUBSET_LENGTH] =
-  {
-    {.l=1},
-    {.l=3},
-  };
 
 // Functions
 

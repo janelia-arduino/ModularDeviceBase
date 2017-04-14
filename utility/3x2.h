@@ -20,9 +20,12 @@ namespace constants
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=2};
 enum{SERIAL_STREAM_COUNT=2};
+enum{STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
+
+extern const size_t stream_ids[STREAM_COUNT];
 
 // Interrupts
 extern ConstantString bnc_a_interrupt_name;
@@ -37,8 +40,6 @@ extern const size_t bnc_b_pin;
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
 
 // Parameters
-enum{ADDRESS_SUBSET_LENGTH=SERIAL_STREAM_COUNT};
-extern modular_server::SubsetMemberType address_subset[ADDRESS_SUBSET_LENGTH];
 
 // Functions
 

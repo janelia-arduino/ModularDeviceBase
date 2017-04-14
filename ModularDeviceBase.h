@@ -36,7 +36,7 @@ public:
   virtual void update();
   virtual void startServer();
 
-  void forward(ArduinoJson::JsonArray & address_array,
+  bool forward(ArduinoJson::JsonArray & address_array,
                ArduinoJson::JsonArray & request_array);
 
 protected:
@@ -53,6 +53,10 @@ private:
   modular_server::Parameter parameters_[modular_device_base::constants::PARAMETER_COUNT_MAX];
   modular_server::Function functions_[modular_device_base::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[modular_device_base::constants::CALLBACK_COUNT_MAX];
+
+  Array<ModularClient,modular_device_base::constants::STREAM_COUNT> modular_clients_;
+
+  bool streamIdIsValid(const size_t stream_id);
 
   // Handlers
   void forwardHandler();

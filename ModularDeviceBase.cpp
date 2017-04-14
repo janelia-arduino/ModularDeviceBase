@@ -28,6 +28,12 @@ void ModularDeviceBase::setup()
     modular_server_.addServerStream(*(constants::serial_stream_ptrs[i]));
   }
 
+  // Add Client Streams
+  for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
+  {
+    modular_clients_[i].setStream(*(constants::serial_stream_ptrs[i]));
+  }
+
   // Set Device ID
   modular_server_.setDeviceName(constants::device_name);
   modular_server_.setFormFactor(constants::form_factor);
@@ -61,7 +67,7 @@ void ModularDeviceBase::setup()
 
   // Parameters
   modular_server::Parameter & address_parameter = modular_server_.createParameter(constants::address_parameter_name);
-  address_parameter.setSubset(constants::address_subset);
+  address_parameter.setRange(constants::address_min,constants::address_max);
   address_parameter.setArrayLengthRange(constants::address_array_length_min,constants::address_array_length_max);
 
   modular_server::Parameter & request_parameter = modular_server_.createParameter(constants::request_parameter_name);
@@ -97,9 +103,40 @@ void ModularDeviceBase::update()
   modular_server_.handleServerRequests();
 }
 
-void ModularDeviceBase::forward(ArduinoJson::JsonArray & address_array,
+bool ModularDeviceBase::forward(ArduinoJson::JsonArray & address_array,
                                 ArduinoJson::JsonArray & request_array)
 {
+  bool succeeded = false;
+  size_t address_array_size = address_array.size();
+  if (address_array_size >= 2)
+  {
+    size_t stream_id = address_array[0];
+    if (streamIdIsValid(stream_id))
+    {
+      address_array.remove(0);
+    }
+  }
+  else if (address_array_size == 1)
+  {
+  }
+  else
+  {
+  }
+  return succeeded;
+}
+
+bool ModularDeviceBase::streamIdIsValid(const size_t stream_id)
+{
+  bool stream_id_is_valid = false;
+  for (size_t i=0; i<constants::STREAM_COUNT; ++i)
+  {
+    if (stream_id == constants::stream_ids[i])
+    {
+      stream_id_is_valid = true;
+      break;
+    }
+  }
+  return stream_id_is_valid;
 }
 
 // Handlers must be non-blocking (avoid 'delay')
