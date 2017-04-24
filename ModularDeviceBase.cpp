@@ -87,7 +87,6 @@ void ModularDeviceBase::setup()
   for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
   {
     constants::serial_stream_ptrs[i]->begin(constants::baudrate);
-    pinMode(constants::serial_rx_pins[i],INPUT_PULLUP);
   }
 
 }
