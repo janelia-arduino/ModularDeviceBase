@@ -31,7 +31,9 @@ void ModularDeviceBase::setup()
   // Add Client Streams
   for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
   {
-    modular_clients_[i].setStream(*(constants::serial_stream_ptrs[i]));
+    client_streams_[i].setStream(*(constants::serial_stream_ptrs[i]));
+    client_streams_[i].setId(constants::client_stream_ids[i]);
+    client_streams_[i].setName(*(constants::client_stream_name_ptrs[i]));
   }
 
   // Set Device ID
@@ -74,11 +76,11 @@ void ModularDeviceBase::setup()
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
 
   // Functions
-  modular_server::Function & forward_function = modular_server_.createFunction(constants::forward_function_name);
-  forward_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardHandler));
-  forward_function.addParameter(address_parameter);
-  forward_function.addParameter(request_parameter);
-  forward_function.setReturnTypeObject();
+  modular_server::Function & proxy_function = modular_server_.createFunction(constants::proxy_function_name);
+  proxy_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::proxyHandler));
+  proxy_function.addParameter(address_parameter);
+  proxy_function.addParameter(request_parameter);
+  proxy_function.setReturnTypeObject();
 
   // Callbacks
 
@@ -102,40 +104,51 @@ void ModularDeviceBase::update()
   modular_server_.handleServerRequests();
 }
 
-bool ModularDeviceBase::forward(ArduinoJson::JsonArray & address_array,
-                                ArduinoJson::JsonArray & request_array)
+bool ModularDeviceBase::proxy(ArduinoJson::JsonArray & address_array,
+                              ArduinoJson::JsonArray & request_array)
 {
   bool succeeded = false;
   size_t address_array_size = address_array.size();
-  if (address_array_size >= 2)
+  if (address_array_size > 0)
   {
     size_t stream_id = address_array[0];
-    if (streamIdIsValid(stream_id))
+    int stream_index = findClientStreamIndex(stream_id);
+    if (stream_index >= 0)
     {
       address_array.remove(0);
+      JsonStream & json_stream = client_streams_[stream_index].getJsonStream();
+      if (address_array_size > 1)
+      {
+        json_stream.beginArray();
+        json_stream.write(&address_array);
+        json_stream.write(&request_array);
+        json_stream.endArray();
+      }
+      else
+      {
+        json_stream.write(&request_array);
+      }
     }
-  }
-  else if (address_array_size == 1)
-  {
   }
   else
   {
+    // to do
   }
   return succeeded;
 }
 
-bool ModularDeviceBase::streamIdIsValid(const size_t stream_id)
+int ModularDeviceBase::findClientStreamIndex(const size_t stream_id)
 {
-  bool stream_id_is_valid = false;
-  for (size_t i=0; i<constants::STREAM_COUNT; ++i)
+  int stream_index = -1;
+  for (size_t i=0; i<constants::CLIENT_STREAM_COUNT; ++i)
   {
-    if (stream_id == constants::stream_ids[i])
+    if (stream_id == client_streams_[i])
     {
-      stream_id_is_valid = true;
+      stream_index = i;
       break;
     }
   }
-  return stream_id_is_valid;
+  return stream_index;
 }
 
 // Handlers must be non-blocking (avoid 'delay')
@@ -155,7 +168,7 @@ bool ModularDeviceBase::streamIdIsValid(const size_t stream_id)
 // modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(value) value type must match the property array element default type
 
-void ModularDeviceBase::forwardHandler()
+void ModularDeviceBase::proxyHandler()
 {
   ArduinoJson::JsonArray * address_array_ptr;
   modular_server_.parameter(constants::address_parameter_name).getValue(address_array_ptr);
@@ -163,11 +176,10 @@ void ModularDeviceBase::forwardHandler()
   ArduinoJson::JsonArray * request_array_ptr;
   modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
 
-  forward(*address_array_ptr,*request_array_ptr);
+  proxy(*address_array_ptr,*request_array_ptr);
 
   modular_server_.response().writeResultKey();
   modular_server_.response().beginObject();
   modular_server_.response().endObject();
 
 }
-

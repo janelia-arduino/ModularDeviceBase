@@ -20,12 +20,19 @@ namespace constants
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=2};
 enum{SERIAL_STREAM_COUNT=4};
-enum{STREAM_COUNT=SERIAL_STREAM_COUNT};
+enum{SERVER_STREAM_COUNT=SERIAL_STREAM_COUNT+1};
+enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
 
-extern const size_t stream_ids[STREAM_COUNT];
+extern const size_t client_stream_ids[CLIENT_STREAM_COUNT];
+
+extern ConstantString serial1_name;
+extern ConstantString serial2_name;
+extern ConstantString serial3_name;
+extern ConstantString serial4_name;
+extern const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT];
 
 // Interrupts
 extern ConstantString bnc_a_interrupt_name;
@@ -58,12 +65,18 @@ namespace constants
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=1};
 enum{SERIAL_STREAM_COUNT=3};
-enum{STREAM_COUNT=SERIAL_STREAM_COUNT};
+enum{SERVER_STREAM_COUNT=SERIAL_STREAM_COUNT+1};
+enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
 
-extern const size_t stream_ids[STREAM_COUNT];
+extern const size_t client_stream_ids[CLIENT_STREAM_COUNT];
+
+extern ConstantString serial1_name;
+extern ConstantString serial2_name;
+extern ConstantString serial3_name;
+extern const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT];
 
 // Units
 

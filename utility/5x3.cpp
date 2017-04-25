@@ -49,12 +49,24 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
     31,
   };
 
-const size_t stream_ids[STREAM_COUNT] =
+const size_t client_stream_ids[CLIENT_STREAM_COUNT] =
   {
     1,
     2,
     3,
     4,
+  };
+
+CONSTANT_STRING(serial1_name,"Serial1");
+CONSTANT_STRING(serial2_name,"Serial2");
+CONSTANT_STRING(serial3_name,"Serial3");
+CONSTANT_STRING(serial4_name,"Serial4");
+const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
+  {
+    &serial1_name,
+    &serial2_name,
+    &serial3_name,
+    &serial4_name,
   };
 
 // Interrupts
@@ -108,12 +120,24 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
     15,
   };
 
-const size_t stream_ids[STREAM_COUNT] =
+const size_t client_stream_ids[CLIENT_STREAM_COUNT] =
   {
     1,
     2,
     3,
   };
+
+CONSTANT_STRING(serial1_name,"Serial1");
+CONSTANT_STRING(serial2_name,"Serial2");
+CONSTANT_STRING(serial3_name,"Serial3");
+const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
+  {
+    &serial1_name,
+    &serial2_name,
+    &serial3_name,
+  };
+
+// Interrupts
 
 // Units
 

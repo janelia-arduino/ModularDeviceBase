@@ -21,11 +21,11 @@
 #include "Functor.h"
 #include "IndexedContainer.h"
 #include "FunctorCallbacks.h"
-#include "ModularClient.h"
 
 #include "ModularServer.h"
 
 #include "utility/Constants.h"
+#include "utility/ClientStream.h"
 
 
 class ModularDeviceBase
@@ -36,8 +36,8 @@ public:
   virtual void update();
   virtual void startServer();
 
-  bool forward(ArduinoJson::JsonArray & address_array,
-               ArduinoJson::JsonArray & request_array);
+  bool proxy(ArduinoJson::JsonArray & address_array,
+             ArduinoJson::JsonArray & request_array);
 
 protected:
 
@@ -54,12 +54,14 @@ private:
   modular_server::Function functions_[modular_device_base::constants::FUNCTION_COUNT_MAX];
   modular_server::Callback callbacks_[modular_device_base::constants::CALLBACK_COUNT_MAX];
 
-  Array<ModularClient,modular_device_base::constants::STREAM_COUNT> modular_clients_;
+  typedef Array<modular_device_base::ClientStream,
+                modular_device_base::constants::CLIENT_STREAM_COUNT> client_streams_t;
+  client_streams_t client_streams_;
 
-  bool streamIdIsValid(const size_t stream_id);
+  int findClientStreamIndex(const size_t stream_id);
 
   // Handlers
-  void forwardHandler();
+  void proxyHandler();
 
 };
 

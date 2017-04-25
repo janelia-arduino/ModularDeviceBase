@@ -45,10 +45,18 @@ const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
     7,
   };
 
-const size_t stream_ids[STREAM_COUNT] =
+const size_t client_stream_ids[CLIENT_STREAM_COUNT] =
   {
     1,
     3,
+  };
+
+CONSTANT_STRING(serial1_name,"Serial1");
+CONSTANT_STRING(serial3_name,"Serial3");
+const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
+  {
+    &serial1_name,
+    &serial3_name,
   };
 
 // Interrupts

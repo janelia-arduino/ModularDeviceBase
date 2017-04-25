@@ -55,7 +55,7 @@ extern const long request_array_length_min;
 extern const long request_array_length_max;
 
 // Functions
-extern ConstantString forward_function_name;
+extern ConstantString proxy_function_name;
 
 // Callbacks
 

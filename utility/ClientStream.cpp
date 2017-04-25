@@ -1,0 +1,54 @@
+// ----------------------------------------------------------------------------
+// ClientStream.cpp
+//
+//
+// Authors:
+// Peter Polidoro polidorop@janelia.hhmi.org
+// ----------------------------------------------------------------------------
+#include "ClientStream.h"
+
+
+namespace modular_device_base
+{
+
+void ClientStream::setStream(Stream & stream)
+{
+  json_stream_.setStream(stream);
+}
+
+JsonStream & ClientStream::getJsonStream()
+{
+  return json_stream_;
+}
+
+void ClientStream::setId(const size_t id)
+{
+  id_ = id;
+}
+
+size_t ClientStream::getId()
+{
+  return id_;
+}
+
+void ClientStream::setName(const ConstantString & name)
+{
+  name_ptr_ = &name;
+}
+
+const ConstantString & ClientStream::getName()
+{
+  return *name_ptr_;
+}
+
+bool operator==(const size_t lhs, ClientStream & rhs)
+{
+  return (lhs == rhs.getId());
+}
+
+bool operator==(ClientStream & lhs, const size_t rhs)
+{
+  return (rhs == lhs);
+}
+
+}
