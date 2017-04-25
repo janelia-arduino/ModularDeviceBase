@@ -113,22 +113,35 @@ bool ModularDeviceBase::proxy(ArduinoJson::JsonArray & address_array,
   {
     size_t stream_id = address_array[0];
     int stream_index = findClientStreamIndex(stream_id);
-    if (stream_index >= 0)
+    if (stream_index < 0)
     {
-      address_array.remove(0);
-      JsonStream & json_stream = client_streams_[stream_index].getJsonStream();
-      if (address_array_size > 1)
-      {
-        json_stream.beginArray();
-        json_stream.write(&address_array);
-        json_stream.write(&request_array);
-        json_stream.endArray();
-      }
-      else
-      {
-        json_stream.write(&request_array);
-      }
+      return false;
     }
+    address_array.remove(0);
+    JsonStream & json_stream = client_streams_[stream_index].getJsonStream();
+    if (address_array_size > 1)
+    {
+      json_stream.beginArray();
+      json_stream.write(&address_array);
+      json_stream.write(&request_array);
+      json_stream.endArray();
+      json_stream.writeNewline();
+    }
+    else
+    {
+      json_stream.write(&request_array);
+      json_stream.writeNewline();
+    }
+    modular_server_.response().writeResultKey();
+    modular_server_.response().beginObject();
+    modular_server_.response().writeKey("response");
+    long chars_piped = modular_server_.response().pipeFrom(json_stream);
+    if (chars_piped <= 0)
+    {
+      modular_server_.response().beginObject();
+      modular_server_.response().endObject();
+    }
+    modular_server_.response().endObject();
   }
   else
   {
@@ -178,8 +191,8 @@ void ModularDeviceBase::proxyHandler()
 
   proxy(*address_array_ptr,*request_array_ptr);
 
-  modular_server_.response().writeResultKey();
-  modular_server_.response().beginObject();
-  modular_server_.response().endObject();
+  // modular_server_.response().writeResultKey();
+  // modular_server_.response().beginObject();
+  // modular_server_.response().endObject();
 
 }

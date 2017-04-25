@@ -19,8 +19,8 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=2};
+
 enum{SERIAL_STREAM_COUNT=4};
-enum{SERVER_STREAM_COUNT=SERIAL_STREAM_COUNT+1};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
@@ -64,8 +64,8 @@ namespace constants
 {
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=1};
+
 enum{SERIAL_STREAM_COUNT=3};
-enum{SERVER_STREAM_COUNT=SERIAL_STREAM_COUNT+1};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
