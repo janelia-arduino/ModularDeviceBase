@@ -36,8 +36,9 @@ public:
   virtual void update();
   virtual void startServer();
 
-  bool forwardToAddress(ArduinoJson::JsonArray & address_array,
-                        ArduinoJson::JsonArray & request_array);
+  template<typename T, typename U>
+  bool forwardToAddress(T & address_array,
+                        U & request_array);
 
 protected:
 
@@ -64,5 +65,7 @@ private:
   void forwardToAddressHandler();
 
 };
+
+#include "ModularDeviceBaseDefinitions.h"
 
 #endif

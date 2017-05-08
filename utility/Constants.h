@@ -36,6 +36,8 @@ extern const modular_server::HardwareInfo processor_hardware_info;
 extern ConstantString hardware_name;
 extern const modular_server::HardwareInfo hardware_info;
 
+extern ConstantString response_string;
+
 // Interrupts
 
 // Units

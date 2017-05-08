@@ -104,53 +104,6 @@ void ModularDeviceBase::update()
   modular_server_.handleServerRequests();
 }
 
-bool ModularDeviceBase::forwardToAddress(ArduinoJson::JsonArray & address_array,
-                                         ArduinoJson::JsonArray & request_array)
-{
-  bool succeeded = false;
-  size_t address_array_size = address_array.size();
-  if (address_array_size > 0)
-  {
-    size_t stream_id = address_array[0];
-    int stream_index = findClientStreamIndex(stream_id);
-    if (stream_index < 0)
-    {
-      return false;
-    }
-    address_array.remove(0);
-    JsonStream & json_stream = client_streams_[stream_index].getJsonStream();
-    if (address_array_size > 1)
-    {
-      json_stream.beginArray();
-      json_stream.write(constants::forward_to_address_function_name);
-      json_stream.write(&address_array);
-      json_stream.write(&request_array);
-      json_stream.endArray();
-      json_stream.writeNewline();
-    }
-    else
-    {
-      json_stream.write(&request_array);
-      json_stream.writeNewline();
-    }
-    modular_server_.response().writeResultKey();
-    modular_server_.response().beginObject();
-    modular_server_.response().writeKey("response");
-    long chars_piped = modular_server_.response().pipeFrom(json_stream);
-    if (chars_piped <= 0)
-    {
-      modular_server_.response().beginObject();
-      modular_server_.response().endObject();
-    }
-    modular_server_.response().endObject();
-  }
-  else
-  {
-    // to do
-  }
-  return succeeded;
-}
-
 int ModularDeviceBase::findClientStreamIndex(const size_t stream_id)
 {
   int stream_index = -1;
@@ -191,9 +144,5 @@ void ModularDeviceBase::forwardToAddressHandler()
   modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
 
   forwardToAddress(*address_array_ptr,*request_array_ptr);
-
-  // modular_server_.response().writeResultKey();
-  // modular_server_.response().beginObject();
-  // modular_server_.response().endObject();
 
 }

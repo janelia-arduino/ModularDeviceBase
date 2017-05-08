@@ -26,6 +26,8 @@ const modular_server::FirmwareInfo firmware_info =
     .version_patch=0,
   };
 
+CONSTANT_STRING(response_string,"response");
+
 // Interrupts
 
 // Units
