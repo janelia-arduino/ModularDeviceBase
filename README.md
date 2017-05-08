@@ -19,8 +19,13 @@ License:
   "id":"getApi",
   "result":{
     "firmware":["ModularDeviceBase"],
-    "functions":[],
-    "parameters":[],
+    "functions":[
+      "forwardToAddress"
+    ],
+    "parameters":[
+      "address",
+      "request"
+    ],
     "properties":[],
     "callbacks":[]
   }

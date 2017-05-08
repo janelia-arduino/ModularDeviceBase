@@ -44,7 +44,7 @@ const long request_array_length_min = 1;
 const long request_array_length_max = modular_server::constants::FUNCTION_PARAMETER_COUNT_MAX;
 
 // Functions
-CONSTANT_STRING(proxy_function_name,"proxy");
+CONSTANT_STRING(forward_to_address_function_name,"forwardToAddress");
 
 // Callbacks
 

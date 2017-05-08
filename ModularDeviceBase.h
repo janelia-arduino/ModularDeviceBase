@@ -36,8 +36,8 @@ public:
   virtual void update();
   virtual void startServer();
 
-  bool proxy(ArduinoJson::JsonArray & address_array,
-             ArduinoJson::JsonArray & request_array);
+  bool forwardToAddress(ArduinoJson::JsonArray & address_array,
+                        ArduinoJson::JsonArray & request_array);
 
 protected:
 
@@ -61,7 +61,7 @@ private:
   int findClientStreamIndex(const size_t stream_id);
 
   // Handlers
-  void proxyHandler();
+  void forwardToAddressHandler();
 
 };
 

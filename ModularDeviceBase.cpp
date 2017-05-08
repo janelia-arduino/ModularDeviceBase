@@ -76,11 +76,11 @@ void ModularDeviceBase::setup()
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
 
   // Functions
-  modular_server::Function & proxy_function = modular_server_.createFunction(constants::proxy_function_name);
-  proxy_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::proxyHandler));
-  proxy_function.addParameter(address_parameter);
-  proxy_function.addParameter(request_parameter);
-  proxy_function.setReturnTypeObject();
+  modular_server::Function & forward_to_address_function = modular_server_.createFunction(constants::forward_to_address_function_name);
+  forward_to_address_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardToAddressHandler));
+  forward_to_address_function.addParameter(address_parameter);
+  forward_to_address_function.addParameter(request_parameter);
+  forward_to_address_function.setReturnTypeObject();
 
   // Callbacks
 
@@ -104,8 +104,8 @@ void ModularDeviceBase::update()
   modular_server_.handleServerRequests();
 }
 
-bool ModularDeviceBase::proxy(ArduinoJson::JsonArray & address_array,
-                              ArduinoJson::JsonArray & request_array)
+bool ModularDeviceBase::forwardToAddress(ArduinoJson::JsonArray & address_array,
+                                         ArduinoJson::JsonArray & request_array)
 {
   bool succeeded = false;
   size_t address_array_size = address_array.size();
@@ -122,6 +122,7 @@ bool ModularDeviceBase::proxy(ArduinoJson::JsonArray & address_array,
     if (address_array_size > 1)
     {
       json_stream.beginArray();
+      json_stream.write(constants::forward_to_address_function_name);
       json_stream.write(&address_array);
       json_stream.write(&request_array);
       json_stream.endArray();
@@ -178,10 +179,10 @@ int ModularDeviceBase::findClientStreamIndex(const size_t stream_id)
 //
 // modular_server_.property(property_name).getValue(value) value type must match the property default type
 // modular_server_.property(property_name).setValue(value) value type must match the property default type
-// modular_server_.property(property_name).getElementValue(value) value type must match the property array element default type
+// modular_server_.property(property_name).getElementValue(element_index,value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(element_index,value) value type must match the property array element default type
 
-void ModularDeviceBase::proxyHandler()
+void ModularDeviceBase::forwardToAddressHandler()
 {
   ArduinoJson::JsonArray * address_array_ptr;
   modular_server_.parameter(constants::address_parameter_name).getValue(address_array_ptr);
@@ -189,7 +190,7 @@ void ModularDeviceBase::proxyHandler()
   ArduinoJson::JsonArray * request_array_ptr;
   modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
 
-  proxy(*address_array_ptr,*request_array_ptr);
+  forwardToAddress(*address_array_ptr,*request_array_ptr);
 
   // modular_server_.response().writeResultKey();
   // modular_server_.response().beginObject();
