@@ -8,9 +8,15 @@ License:
 
     BSD
 
-## Inherits
+## Ancestors
 
 [ModularServer](https://github.com/janelia-arduino/ModularServer)
+
+## Clients
+
+## Devices
+
+[modular_device_base](https://github.com/janelia-modular-devices/modular_device_base.git)
 
 ## API
 

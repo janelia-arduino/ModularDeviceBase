@@ -27,6 +27,7 @@ const modular_server::FirmwareInfo firmware_info =
   };
 
 CONSTANT_STRING(response_string,"response");
+CONSTANT_STRING(stream_string,"stream");
 
 // Interrupts
 
@@ -47,6 +48,7 @@ const long request_array_length_max = modular_server::constants::FUNCTION_PARAME
 
 // Functions
 CONSTANT_STRING(forward_to_address_function_name,"forwardToAddress");
+CONSTANT_STRING(get_client_info_function_name,"getClientInfo");
 
 // Callbacks
 

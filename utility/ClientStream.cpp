@@ -16,6 +16,11 @@ void ClientStream::setStream(Stream & stream)
   json_stream_.setStream(stream);
 }
 
+Stream & ClientStream::getStream()
+{
+  return json_stream_.getStream();
+}
+
 JsonStream & ClientStream::getJsonStream()
 {
   return json_stream_;

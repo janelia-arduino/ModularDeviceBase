@@ -17,6 +17,7 @@ class ClientStream
 {
 public:
   void setStream(Stream & stream);
+  Stream & getStream();
   JsonStream & getJsonStream();
 
   void setId(const size_t id);

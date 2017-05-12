@@ -82,6 +82,10 @@ void ModularDeviceBase::setup()
   forward_to_address_function.addParameter(request_parameter);
   forward_to_address_function.setReturnTypeObject();
 
+  modular_server::Function & get_client_info_function = modular_server_.createFunction(constants::get_client_info_function_name);
+  get_client_info_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getClientInfoHandler));
+  get_client_info_function.setReturnTypeObject();
+
   // Callbacks
 
   // Begin Streams
@@ -104,12 +108,37 @@ void ModularDeviceBase::update()
   modular_server_.handleServerRequests();
 }
 
+JsonStream * ModularDeviceBase::findClientJsonStream(const size_t stream_id)
+{
+  JsonStream * json_stream_ptr = NULL;
+  int stream_index = findClientStreamIndex(stream_id);
+  if (stream_index >= 0)
+  {
+    json_stream_ptr = &(client_streams_[stream_index].getJsonStream());
+  }
+  return json_stream_ptr;
+}
+
 int ModularDeviceBase::findClientStreamIndex(const size_t stream_id)
 {
   int stream_index = -1;
   for (size_t i=0; i<constants::CLIENT_STREAM_COUNT; ++i)
   {
     if (stream_id == client_streams_[i])
+    {
+      stream_index = i;
+      break;
+    }
+  }
+  return stream_index;
+}
+
+int ModularDeviceBase::findClientStreamIndex(Stream & Stream)
+{
+  int stream_index = -1;
+  for (size_t i=0; i<constants::CLIENT_STREAM_COUNT; ++i)
+  {
+    if (&Stream == &(client_streams_[i].getStream()))
     {
       stream_index = i;
       break;
@@ -145,4 +174,31 @@ void ModularDeviceBase::forwardToAddressHandler()
 
   forwardToAddress(*address_array_ptr,*request_array_ptr);
 
+}
+
+void ModularDeviceBase::getClientInfoHandler()
+{
+  modular_server_.response().writeResultKey();
+
+  modular_server_.response().beginArray();
+
+  for (size_t client_index=0; client_index<clients_.size(); ++client_index)
+  {
+    ModularClient & client = clients_[client_index];
+
+    modular_server_.response().beginObject();
+
+    int client_stream_index = findClientStreamIndex(client.getStream());
+    if (client_stream_index >= 0)
+    {
+      const ConstantString & stream_name = client_streams_[client_stream_index].getName();
+      modular_server_.response().write(constants::stream_string,stream_name);
+    }
+
+    modular_server_.response().write(constants::address_parameter_name,client.getAddress());
+
+    modular_server_.response().endObject();
+  }
+
+  modular_server_.response().endArray();
 }

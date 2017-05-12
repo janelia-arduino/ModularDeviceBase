@@ -18,7 +18,7 @@ namespace constants
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROPERTY_COUNT_MAX=1};
 enum{PARAMETER_COUNT_MAX=2};
-enum{FUNCTION_COUNT_MAX=1};
+enum{FUNCTION_COUNT_MAX=2};
 enum{CALLBACK_COUNT_MAX=1};
 
 extern const long baudrate;
@@ -37,6 +37,7 @@ extern ConstantString hardware_name;
 extern const modular_server::HardwareInfo hardware_info;
 
 extern ConstantString response_string;
+extern ConstantString stream_string;
 
 // Interrupts
 
@@ -58,6 +59,7 @@ extern const long request_array_length_max;
 
 // Functions
 extern ConstantString forward_to_address_function_name;
+extern ConstantString get_client_info_function_name;
 
 // Callbacks
 

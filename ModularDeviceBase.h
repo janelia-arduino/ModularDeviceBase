@@ -22,6 +22,8 @@
 #include "IndexedContainer.h"
 #include "FunctorCallbacks.h"
 
+#include "ModularClient.h"
+
 #include "ModularServer.h"
 
 #include "utility/Constants.h"
@@ -39,6 +41,11 @@ public:
   template<typename T, typename U>
   bool forwardToAddress(T & address_array,
                         U & request_array);
+
+  template<typename T>
+  ModularClient & createClientAtAddress(T & address_array);
+  template <typename T, size_t N>
+  ModularClient & createClientAtAddress(const T (&address_array)[N]);
 
 protected:
 
@@ -59,10 +66,16 @@ private:
                 modular_device_base::constants::CLIENT_STREAM_COUNT> client_streams_t;
   client_streams_t client_streams_;
 
+  Array<ModularClient,modular_client::constants::ADDRESS_ID_COUNT_MAX> clients_;
+  ModularClient dummy_client_;
+
+  JsonStream * findClientJsonStream(const size_t stream_id);
   int findClientStreamIndex(const size_t stream_id);
+  int findClientStreamIndex(Stream & stream);
 
   // Handlers
   void forwardToAddressHandler();
+  void getClientInfoHandler();
 
 };
 
