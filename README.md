@@ -38,6 +38,44 @@ License:
 }
 ```
 
+## API Verbose
+
+```json
+{
+  "id":"getApiVerbose",
+  "result":{
+    "firmware":["ModularDeviceBase"],
+    "functions":[
+      {
+        "name":"forwardToAddress",
+        "parameters":[
+          "address",
+          "request"
+        ],
+        "result_type":"object"
+      },
+      {
+        "name":"getClientInfo",
+        "parameters":[],
+        "result_type":"object"
+      }
+    ],
+    "parameters":[
+      {
+        "name":"address",
+        "type":"array"
+      },
+      {
+        "name":"request",
+        "type":"array"
+      }
+    ],
+    "properties":[],
+    "callbacks":[]
+  }
+}
+```
+
 ## More Detailed Modular Device Information
 
 [modular-devices](https://github.com/janelia-modular-devices/modular-devices)

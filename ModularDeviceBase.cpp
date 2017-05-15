@@ -80,11 +80,11 @@ void ModularDeviceBase::setup()
   forward_to_address_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardToAddressHandler));
   forward_to_address_function.addParameter(address_parameter);
   forward_to_address_function.addParameter(request_parameter);
-  forward_to_address_function.setReturnTypeObject();
+  forward_to_address_function.setResultTypeObject();
 
   modular_server::Function & get_client_info_function = modular_server_.createFunction(constants::get_client_info_function_name);
   get_client_info_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getClientInfoHandler));
-  get_client_info_function.setReturnTypeObject();
+  get_client_info_function.setResultTypeObject();
 
   // Callbacks
 
