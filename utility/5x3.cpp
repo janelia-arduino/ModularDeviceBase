@@ -110,25 +110,25 @@ const modular_server::HardwareInfo processor_hardware_info =
 HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
   {
     &Serial1,
-    // &Serial2,
-    // &Serial3,
+    &Serial2,
+    &Serial3,
   };
 
 const size_t client_stream_ids[CLIENT_STREAM_COUNT] =
   {
     1,
-    // 2,
-    // 3,
+    2,
+    3,
   };
 
 CONSTANT_STRING(serial1_name,"Serial1");
-// CONSTANT_STRING(serial2_name,"Serial2");
-// CONSTANT_STRING(serial3_name,"Serial3");
+CONSTANT_STRING(serial2_name,"Serial2");
+CONSTANT_STRING(serial3_name,"Serial3");
 const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
   {
     &serial1_name,
-    // &serial2_name,
-    // &serial3_name,
+    &serial2_name,
+    &serial3_name,
   };
 
 // Interrupts
