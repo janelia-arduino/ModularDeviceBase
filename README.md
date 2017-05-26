@@ -40,41 +40,7 @@ License:
 
 ## API Verbose
 
-```json
-{
-  "id":"getApiVerbose",
-  "result":{
-    "firmware":["ModularDeviceBase"],
-    "functions":[
-      {
-        "name":"forwardToAddress",
-        "parameters":[
-          "address",
-          "request"
-        ],
-        "result_type":"object"
-      },
-      {
-        "name":"getClientInfo",
-        "parameters":[],
-        "result_type":"object"
-      }
-    ],
-    "parameters":[
-      {
-        "name":"address",
-        "type":"array"
-      },
-      {
-        "name":"request",
-        "type":"array"
-      }
-    ],
-    "properties":[],
-    "callbacks":[]
-  }
-}
-```
+[API Verbose](./api.json)
 
 ## More Detailed Modular Device Information
 
