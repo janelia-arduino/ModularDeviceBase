@@ -65,16 +65,14 @@ namespace constants
 enum{PROCESSOR_INTERRUPT_COUNT_MAX=1};
 enum{INTERRUPT_COUNT_MAX=1};
 
-enum{SERIAL_STREAM_COUNT=3};
+enum{SERIAL_STREAM_COUNT=1};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
 
 extern const size_t client_stream_ids[CLIENT_STREAM_COUNT];
 
-extern ConstantString serial1_name;
 extern ConstantString serial2_name;
-extern ConstantString serial3_name;
 extern const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT];
 
 // Units
