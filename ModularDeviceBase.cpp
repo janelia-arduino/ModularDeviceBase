@@ -71,9 +71,11 @@ void ModularDeviceBase::setup()
   modular_server::Parameter & address_parameter = modular_server_.createParameter(constants::address_parameter_name);
   address_parameter.setRange(constants::address_min,constants::address_max);
   address_parameter.setArrayLengthRange(constants::address_array_length_min,constants::address_array_length_max);
+  address_parameter.setTypeLong();
 
   modular_server::Parameter & request_parameter = modular_server_.createParameter(constants::request_parameter_name);
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
+  request_parameter.setTypeAny();
 
   // Functions
   modular_server::Function & forward_to_address_function = modular_server_.createFunction(constants::forward_to_address_function_name);
