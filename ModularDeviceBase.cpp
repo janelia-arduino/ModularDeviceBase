@@ -21,9 +21,7 @@ void ModularDeviceBase::setup()
 
   // Pin Setup
   pinMode(constants::led_green_pin,OUTPUT);
-  setLedOn(constants::led_green);
   pinMode(constants::led_yellow_pin,OUTPUT);
-  setLedOff(constants::led_yellow);
 
   // Add Server Streams
   modular_server_.addServerStream(Serial);
@@ -126,6 +124,8 @@ void ModularDeviceBase::setup()
     constants::serial_stream_ptrs[i]->begin(constants::baudrate);
   }
 
+  setLedOn(constants::led_green);
+  setLedOff(constants::led_yellow);
 }
 
 void ModularDeviceBase::startServer()
