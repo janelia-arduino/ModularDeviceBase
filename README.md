@@ -26,13 +26,19 @@ License:
   "result":{
     "firmware":["ModularDeviceBase"],
     "functions":[
-      "forwardToAddress"
+      "forwardToAddress",
+      "getClientInfo",
+      "setLedOn",
+      "setLedOff"
     ],
     "parameters":[
       "address",
-      "request"
+      "request",
+      "led"
     ],
-    "properties":[],
+    "properties":[
+      "ledsEnabled"
+    ],
     "callbacks":[]
   }
 }

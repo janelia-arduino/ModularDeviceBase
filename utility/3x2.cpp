@@ -59,12 +59,18 @@ const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
     &serial3_name,
   };
 
+const size_t led_green_pin = 26;
+const size_t led_yellow_pin = 27;
+
 // Interrupts
 CONSTANT_STRING(bnc_a_interrupt_name,"bnc_a");
 const size_t bnc_a_pin = 33;
 
 CONSTANT_STRING(bnc_b_interrupt_name,"bnc_b");
 const size_t bnc_b_pin = 32;
+
+CONSTANT_STRING(btn_a_interrupt_name,"btn_a");
+const size_t btn_a_pin = 31;
 
 // Units
 

@@ -20,6 +20,10 @@ void ModularDeviceBase::setup()
   modular_server_.setup();
 
   // Pin Setup
+  pinMode(constants::led_green_pin,OUTPUT);
+  setLedOn(constants::led_green);
+  pinMode(constants::led_yellow_pin,OUTPUT);
+  setLedOff(constants::led_yellow);
 
   // Add Server Streams
   modular_server_.addServerStream(Serial);
@@ -56,6 +60,17 @@ void ModularDeviceBase::setup()
 
   modular_server::Interrupt & bnc_b_interrupt = modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
                                                                                 constants::bnc_b_pin);
+
+  modular_server::Interrupt & btn_a_interrupt = modular_server_.createInterrupt(constants::btn_a_interrupt_name,
+                                                                                constants::btn_a_pin);
+
+#endif
+
+#if defined(__MK64FX512__)
+  modular_server::Interrupt & btn_b_interrupt = modular_server_.createInterrupt(constants::btn_b_interrupt_name,
+                                                                                constants::btn_b_pin);
+
+
 #endif
 
   // Add Firmware
@@ -66,6 +81,8 @@ void ModularDeviceBase::setup()
                               callbacks_);
 
   // Properties
+  modular_server::Property & leds_enabled_property = modular_server_.createProperty(constants::leds_enabled_property_name,constants::leds_enabled_default);
+  leds_enabled_property.attachPostSetValueFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::ledsEnabledHandler));
 
   // Parameters
   modular_server::Parameter & address_parameter = modular_server_.createParameter(constants::address_parameter_name);
@@ -77,6 +94,10 @@ void ModularDeviceBase::setup()
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
   request_parameter.setTypeAny();
 
+  modular_server::Parameter & led_parameter = modular_server_.createParameter(constants::led_parameter_name);
+  led_parameter.setTypeString();
+  led_parameter.setSubset(constants::led_ptr_subset);
+
   // Functions
   modular_server::Function & forward_to_address_function = modular_server_.createFunction(constants::forward_to_address_function_name);
   forward_to_address_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardToAddressHandler));
@@ -87,6 +108,14 @@ void ModularDeviceBase::setup()
   modular_server::Function & get_client_info_function = modular_server_.createFunction(constants::get_client_info_function_name);
   get_client_info_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getClientInfoHandler));
   get_client_info_function.setResultTypeObject();
+
+  modular_server::Function & set_led_on_function = modular_server_.createFunction(constants::set_led_on_function_name);
+  set_led_on_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::setLedOnHandler));
+  set_led_on_function.addParameter(led_parameter);
+
+  modular_server::Function & set_led_off_function = modular_server_.createFunction(constants::set_led_off_function_name);
+  set_led_off_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::setLedOffHandler));
+  set_led_off_function.addParameter(led_parameter);
 
   // Callbacks
 
@@ -166,6 +195,33 @@ int ModularDeviceBase::findClientStreamIndex(Stream & Stream)
 // modular_server_.property(property_name).getElementValue(element_index,value) value type must match the property array element default type
 // modular_server_.property(property_name).setElementValue(element_index,value) value type must match the property array element default type
 
+void ModularDeviceBase::ledsEnabledHandler()
+{
+  bool leds_enabled;
+  modular_server_.property(constants::leds_enabled_property_name).getValue(leds_enabled);
+
+  if (!leds_enabled)
+  {
+    bool led_green_on = led_green_on_;
+    setLedOff(constants::led_green);
+    led_green_on_ = led_green_on;
+    bool led_yellow_on = led_yellow_on_;
+    setLedOff(constants::led_yellow);
+    led_yellow_on_ = led_yellow_on;
+  }
+  else
+  {
+    if (led_green_on_)
+    {
+      setLedOn(constants::led_green);
+    }
+    if (led_yellow_on_)
+    {
+      setLedOn(constants::led_yellow);
+    }
+  }
+}
+
 void ModularDeviceBase::forwardToAddressHandler()
 {
   ArduinoJson::JsonArray * address_array_ptr;
@@ -204,3 +260,20 @@ void ModularDeviceBase::getClientInfoHandler()
 
   modular_server_.response().endArray();
 }
+
+void ModularDeviceBase::setLedOnHandler()
+{
+  const char * led;
+  modular_server_.parameter(constants::led_parameter_name).getValue(led);
+
+  setLedOn(led);
+}
+
+void ModularDeviceBase::setLedOffHandler()
+{
+  const char * led;
+  modular_server_.parameter(constants::led_parameter_name).getValue(led);
+
+  setLedOff(led);
+}
+

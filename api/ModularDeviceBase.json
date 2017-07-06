@@ -19,6 +19,18 @@
         "result_info":{
           "type":"object"
         }
+      },
+      {
+        "name":"setLedOn",
+        "parameters":[
+          "led"
+        ]
+      },
+      {
+        "name":"setLedOff",
+        "parameters":[
+          "led"
+        ]
       }
     ],
     "parameters":[
@@ -31,9 +43,27 @@
         "name":"request",
         "type":"array",
         "array_element_type":"any"
+      },
+      {
+        "name":"led",
+        "type":"string"
       }
     ],
-    "properties":[],
+    "properties":[
+      {
+        "name":"ledsEnabled",
+        "type":"bool",
+        "functions":[
+          "getValue",
+          "setValue",
+          "getDefaultValue",
+          "setValueToDefault"
+        ],
+        "parameters":[
+          "value"
+        ]
+      }
+    ],
     "callbacks":[]
   }
 }
