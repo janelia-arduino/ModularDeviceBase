@@ -53,20 +53,20 @@ void ModularDeviceBase::setup()
 
   // Interrupts
 #if !defined(__AVR_ATmega2560__)
-  modular_server::Interrupt & bnc_a_interrupt = modular_server_.createInterrupt(constants::bnc_a_interrupt_name,
-                                                                                constants::bnc_a_pin);
+  modular_server_.createInterrupt(constants::bnc_a_interrupt_name,
+                                  constants::bnc_a_pin);
 
-  modular_server::Interrupt & bnc_b_interrupt = modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
-                                                                                constants::bnc_b_pin);
+  modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
+                                  constants::bnc_b_pin);
 
-  modular_server::Interrupt & btn_a_interrupt = modular_server_.createInterrupt(constants::btn_a_interrupt_name,
-                                                                                constants::btn_a_pin);
+  modular_server_.createInterrupt(constants::btn_a_interrupt_name,
+                                  constants::btn_a_pin);
 
 #endif
 
 #if defined(__MK64FX512__)
-  modular_server::Interrupt & btn_b_interrupt = modular_server_.createInterrupt(constants::btn_b_interrupt_name,
-                                                                                constants::btn_b_pin);
+  modular_server_.createInterrupt(constants::btn_b_interrupt_name,
+                                  constants::btn_b_pin);
 
 
 #endif
@@ -276,4 +276,3 @@ void ModularDeviceBase::setLedOffHandler()
 
   setLedOff(led);
 }
-
