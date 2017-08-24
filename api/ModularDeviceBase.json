@@ -1,7 +1,8 @@
 {
-  "id":"getApiVerbose",
+  "id":"getApi",
   "result":{
     "firmware":["ModularDeviceBase"],
+    "verbosity":"GENERAL",
     "functions":[
       {
         "name":"forwardToAddress",
@@ -15,7 +16,6 @@
       },
       {
         "name":"getClientInfo",
-        "parameters":[],
         "result_info":{
           "type":"object"
         }
@@ -54,16 +54,41 @@
         "name":"ledsEnabled",
         "type":"bool",
         "functions":[
-          "getValue",
-          "setValue",
-          "getDefaultValue",
-          "setValueToDefault"
+          {
+            "name":"getValue",
+            "result_info":{
+              "type":"bool"
+            }
+          },
+          {
+            "name":"setValue",
+            "parameters":[
+              "value"
+            ],
+            "result_info":{
+              "type":"bool"
+            }
+          },
+          {
+            "name":"getDefaultValue",
+            "result_info":{
+              "type":"bool"
+            }
+          },
+          {
+            "name":"setValueToDefault",
+            "result_info":{
+              "type":"bool"
+            }
+          }
         ],
         "parameters":[
-          "value"
+          {
+            "name":"value",
+            "type":"bool"
+          }
         ]
       }
-    ],
-    "callbacks":[]
+    ]
   }
 }

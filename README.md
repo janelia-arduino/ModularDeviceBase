@@ -18,13 +18,14 @@ License:
 
 [modular_device_base](https://github.com/janelia-modular-devices/modular_device_base.git)
 
-## API
+## API NAMES
 
 ```json
 {
   "id":"getApi",
   "result":{
     "firmware":["ModularDeviceBase"],
+    "verbosity":"NAMES",
     "functions":[
       "forwardToAddress",
       "getClientInfo",
@@ -38,15 +39,14 @@ License:
     ],
     "properties":[
       "ledsEnabled"
-    ],
-    "callbacks":[]
+    ]
   }
 }
 ```
 
-## API Verbose
+## API GENERAL
 
-[API Verbose](./api/)
+[API GENERAL](./api/)
 
 ## More Detailed Modular Device Information
 
