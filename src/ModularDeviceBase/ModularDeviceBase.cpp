@@ -5,7 +5,7 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-#include "ModularDeviceBase.h"
+#include "../ModularDeviceBase.h"
 
 
 using namespace modular_device_base;

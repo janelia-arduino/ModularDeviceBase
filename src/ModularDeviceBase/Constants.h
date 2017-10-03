@@ -7,8 +7,8 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_DEVICE_BASE_CONSTANTS_H
 #define MODULAR_DEVICE_BASE_CONSTANTS_H
-#include "ConstantVariable.h"
-#include "ModularServer.h"
+#include <ConstantVariable.h>
+#include <ModularServer.h>
 
 
 namespace modular_device_base

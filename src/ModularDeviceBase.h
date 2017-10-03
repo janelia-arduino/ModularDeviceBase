@@ -7,27 +7,27 @@
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_DEVICE_BASE_H
 #define MODULAR_DEVICE_BASE_H
-#include "Flash.h"
+#include <Flash.h>
 #include <EEPROM.h>
-#include "Streaming.h"
-#include "ArduinoJson.h"
-#include "JsonSanitizer.h"
-#include "JsonStream.h"
-#include "Array.h"
-#include "Vector.h"
-#include "MemoryFree.h"
-#include "ConstantVariable.h"
-#include "SavedVariable.h"
-#include "Functor.h"
-#include "IndexedContainer.h"
-#include "FunctorCallbacks.h"
+#include <Streaming.h>
+#include <ArduinoJson.h>
+#include <JsonSanitizer.h>
+#include <JsonStream.h>
+#include <Array.h>
+#include <Vector.h>
+#include <MemoryFree.h>
+#include <ConstantVariable.h>
+#include <SavedVariable.h>
+#include <Functor.h>
+#include <IndexedContainer.h>
+#include <FunctorCallbacks.h>
 
-#include "ModularClient.h"
+#include <ModularClient.h>
 
-#include "ModularServer.h"
+#include <ModularServer.h>
 
-#include "utility/Constants.h"
-#include "utility/ClientStream.h"
+#include "ModularDeviceBase/Constants.h"
+#include "ModularDeviceBase/ClientStream.h"
 
 
 class ModularDeviceBase
@@ -90,6 +90,6 @@ private:
 
 };
 
-#include "ModularDeviceBaseDefinitions.h"
+#include "ModularDeviceBase/ModularDeviceBaseDefinitions.h"
 
 #endif
