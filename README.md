@@ -22,22 +22,24 @@ License:
 
 ```json
 {
-  "id":"getApi",
-  "result":{
-    "firmware":["ModularDeviceBase"],
-    "verbosity":"NAMES",
-    "functions":[
+  "id": "getApi",
+  "result": {
+    "firmware": [
+      "ModularDeviceBase"
+    ],
+    "verbosity": "NAMES",
+    "functions": [
       "forwardToAddress",
       "getClientInfo",
       "setLedOn",
       "setLedOff"
     ],
-    "parameters":[
+    "parameters": [
       "address",
       "request",
       "led"
     ],
-    "properties":[
+    "properties": [
       "ledsEnabled"
     ]
   }
