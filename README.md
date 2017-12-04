@@ -41,6 +41,9 @@ License:
     ],
     "properties": [
       "ledsEnabled"
+    ],
+    "callbacks": [
+      "reset"
     ]
   }
 }

@@ -12,16 +12,25 @@ using namespace modular_device_base;
 
 ModularDeviceBase::ModularDeviceBase()
 {
+  // Enable watchdog
+  watchdog_reset_time_ = millis();
+  watchdog_.enable(constants::watchdog_timeout);
 }
 
 void ModularDeviceBase::setup()
 {
+  // Reset Watchdog
+  resetWatchdog();
+
   // Server Setup
   modular_server_.setup();
 
   // Pin Setup
   pinMode(constants::led_green_pin,OUTPUT);
   pinMode(constants::led_yellow_pin,OUTPUT);
+
+  // Variable Setup
+  system_reset_ = false;
 
   // Add Server Streams
   modular_server_.addServerStream(Serial);
@@ -116,6 +125,8 @@ void ModularDeviceBase::setup()
   set_led_off_function.addParameter(led_parameter);
 
   // Callbacks
+  modular_server::Callback & reset_callback = modular_server_.createCallback(constants::reset_callback_name);
+  reset_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&ModularDeviceBase::resetHandler));
 
   // Begin Streams
   Serial.begin(constants::baudrate);
@@ -126,6 +137,7 @@ void ModularDeviceBase::setup()
 
   setLedOn(constants::led_green);
   setLedOff(constants::led_yellow);
+
 }
 
 void ModularDeviceBase::startServer()
@@ -136,7 +148,23 @@ void ModularDeviceBase::startServer()
 
 void ModularDeviceBase::update()
 {
+  if (!system_reset_ && ((millis() - watchdog_reset_time_) >= constants::watchdog_reset_duration))
+  {
+    resetWatchdog();
+  }
+
   modular_server_.handleServerRequests();
+}
+
+void ModularDeviceBase::reset()
+{
+  system_reset_ = true;
+}
+
+void ModularDeviceBase::resetWatchdog()
+{
+  watchdog_reset_time_ = millis();
+  watchdog_.reset();
 }
 
 JsonStream * ModularDeviceBase::findClientJsonStream(const size_t stream_id)
@@ -275,4 +303,9 @@ void ModularDeviceBase::setLedOffHandler()
   modular_server_.parameter(constants::led_parameter_name).getValue(led);
 
   setLedOff(led);
+}
+
+void ModularDeviceBase::resetHandler(modular_server::Interrupt * interrupt_ptr)
+{
+  reset();
 }

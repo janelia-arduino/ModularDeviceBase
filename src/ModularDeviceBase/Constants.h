@@ -9,6 +9,7 @@
 #define MODULAR_DEVICE_BASE_CONSTANTS_H
 #include <ConstantVariable.h>
 #include <ModularServer.h>
+#include <Watchdog.h>
 
 
 namespace modular_device_base
@@ -38,6 +39,9 @@ extern const modular_server::HardwareInfo hardware_info;
 
 extern ConstantString response_string;
 extern ConstantString stream_string;
+
+extern const Watchdog::Timeout watchdog_timeout;
+extern const size_t watchdog_reset_duration;
 
 // Interrupts
 
@@ -72,6 +76,7 @@ extern ConstantString set_led_on_function_name;
 extern ConstantString set_led_off_function_name;
 
 // Callbacks
+extern ConstantString reset_callback_name;
 
 // Errors
 }

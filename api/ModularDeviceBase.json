@@ -91,6 +91,42 @@
           }
         ]
       }
+    ],
+    "callbacks": [
+      {
+        "name": "reset",
+        "functions": [
+          {
+            "name": "trigger"
+          },
+          {
+            "name": "attachTo",
+            "parameters": [
+              "interrupt",
+              "mode"
+            ]
+          },
+          {
+            "name": "detachFrom",
+            "parameters": [
+              "interrupt"
+            ]
+          },
+          {
+            "name": "detachFromAll"
+          }
+        ],
+        "parameters": [
+          {
+            "name": "interrupt",
+            "type": "string"
+          },
+          {
+            "name": "mode",
+            "type": "string"
+          }
+        ]
+      }
     ]
   }
 }

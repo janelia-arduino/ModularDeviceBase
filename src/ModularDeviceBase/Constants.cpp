@@ -22,12 +22,15 @@ const modular_server::FirmwareInfo firmware_info =
   {
     .name_ptr=&firmware_name,
     .version_major=2,
-    .version_minor=3,
-    .version_patch=3,
+    .version_minor=4,
+    .version_patch=0,
   };
 
 CONSTANT_STRING(response_string,"response");
 CONSTANT_STRING(stream_string,"stream");
+
+extern const Watchdog::Timeout watchdog_timeout = Watchdog::TIMEOUT_1S;
+extern const size_t watchdog_reset_duration = 200;
 
 // Interrupts
 
@@ -64,6 +67,7 @@ CONSTANT_STRING(set_led_on_function_name,"setLedOn");
 CONSTANT_STRING(set_led_off_function_name,"setLedOff");
 
 // Callbacks
+CONSTANT_STRING(reset_callback_name,"reset");
 
 // Errors
 }

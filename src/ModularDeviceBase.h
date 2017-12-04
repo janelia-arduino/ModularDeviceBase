@@ -21,6 +21,7 @@
 #include <Functor.h>
 #include <IndexedContainer.h>
 #include <FunctorCallbacks.h>
+#include <Watchdog.h>
 
 #include <ModularClient.h>
 
@@ -35,8 +36,8 @@ class ModularDeviceBase
 public:
   ModularDeviceBase();
   virtual void setup();
-  virtual void update();
   virtual void startServer();
+  virtual void update();
 
   template<typename T, typename U>
   bool forwardToAddress(T & address_array,
@@ -52,9 +53,13 @@ public:
   template<typename T>
   void setLedOff(T led);
 
+  void reset();
+
 protected:
 
   modular_server::ModularServer modular_server_;
+
+  void resetWatchdog();
 
 private:
 
@@ -77,6 +82,10 @@ private:
   bool led_green_on_;
   bool led_yellow_on_;
 
+  Watchdog watchdog_;
+  unsigned long watchdog_reset_time_;
+  bool system_reset_;
+
   JsonStream * findClientJsonStream(const size_t stream_id);
   int findClientStreamIndex(const size_t stream_id);
   int findClientStreamIndex(Stream & stream);
@@ -87,6 +96,7 @@ private:
   void getClientInfoHandler();
   void setLedOnHandler();
   void setLedOffHandler();
+  void resetHandler(modular_server::Interrupt * interrupt_ptr);
 
 };
 
