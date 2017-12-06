@@ -13,17 +13,18 @@ using namespace modular_device_base;
 ModularDeviceBase::ModularDeviceBase()
 {
   // Enable watchdog
+  watchdog_.reset();
   watchdog_reset_time_ = millis();
   watchdog_.enable(constants::watchdog_timeout);
 }
 
 void ModularDeviceBase::setup()
 {
-  // Reset Watchdog
-  resetWatchdog();
-
   // Server Setup
   modular_server_.setup();
+
+  // Reset Watchdog
+  resetWatchdog();
 
   // Pin Setup
   pinMode(constants::led_green_pin,OUTPUT);
