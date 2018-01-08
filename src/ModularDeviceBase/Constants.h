@@ -22,7 +22,7 @@ enum{PARAMETER_COUNT_MAX=3};
 enum{FUNCTION_COUNT_MAX=4};
 enum{CALLBACK_COUNT_MAX=1};
 
-extern const long baudrate;
+extern const long baud;
 
 extern ConstantString device_name;
 

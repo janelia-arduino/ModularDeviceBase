@@ -12,7 +12,7 @@ namespace modular_device_base
 {
 namespace constants
 {
-const long baudrate = 115200;
+const long baud = 115200;
 
 CONSTANT_STRING(device_name,"modular_device_base");
 

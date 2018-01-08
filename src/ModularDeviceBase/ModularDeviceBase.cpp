@@ -130,10 +130,10 @@ void ModularDeviceBase::setup()
   reset_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&ModularDeviceBase::resetHandler));
 
   // Begin Streams
-  Serial.begin(constants::baudrate);
+  Serial.begin(constants::baud);
   for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
   {
-    constants::serial_stream_ptrs[i]->begin(constants::baudrate);
+    constants::serial_stream_ptrs[i]->begin(constants::baud);
   }
 
   setLedOn(constants::led_green);
