@@ -23,13 +23,13 @@ const modular_server::FirmwareInfo firmware_info =
     .name_ptr=&firmware_name,
     .version_major=2,
     .version_minor=4,
-    .version_patch=0,
+    .version_patch=1,
   };
 
 CONSTANT_STRING(response_string,"response");
 CONSTANT_STRING(stream_string,"stream");
 
-extern const Watchdog::Timeout watchdog_timeout = Watchdog::TIMEOUT_1S;
+extern const Watchdog::Timeout watchdog_timeout = Watchdog::TIMEOUT_2S;
 extern const size_t watchdog_reset_duration = 200;
 
 // Interrupts
