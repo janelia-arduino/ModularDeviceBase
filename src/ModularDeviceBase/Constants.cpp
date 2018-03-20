@@ -12,7 +12,7 @@ namespace modular_device_base
 {
 namespace constants
 {
-const long baud = 115200;
+const long baud = 2000000;
 
 CONSTANT_STRING(device_name,"modular_device_base");
 
@@ -21,9 +21,9 @@ CONSTANT_STRING(firmware_name,"ModularDeviceBase");
 const modular_server::FirmwareInfo firmware_info =
   {
     .name_ptr=&firmware_name,
-    .version_major=2,
-    .version_minor=4,
-    .version_patch=1,
+    .version_major=3,
+    .version_minor=0,
+    .version_patch=0,
   };
 
 CONSTANT_STRING(response_string,"response");
