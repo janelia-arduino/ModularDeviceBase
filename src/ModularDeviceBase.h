@@ -40,11 +40,6 @@ public:
   template <typename T, size_t N>
   ModularClient & createClientAtAddress(const T (&address_array)[N]);
 
-  template<typename T>
-  void setLedOn(T led);
-  template<typename T>
-  void setLedOff(T led);
-
   void reset();
 
 protected:
@@ -71,9 +66,6 @@ private:
   Array<ModularClient,modular_client::constants::ADDRESS_ID_COUNT_MAX> clients_;
   ModularClient dummy_client_;
 
-  bool led_green_on_;
-  bool led_yellow_on_;
-
   Watchdog watchdog_;
   unsigned long watchdog_reset_time_;
   bool system_reset_;
@@ -83,11 +75,8 @@ private:
   int findClientStreamIndex(Stream & stream);
 
   // Handlers
-  void ledsEnabledHandler();
   void forwardToAddressHandler();
   void getClientInfoHandler();
-  void setLedOnHandler();
-  void setLedOffHandler();
   void resetHandler(modular_server::Pin * pin_ptr);
 
 };

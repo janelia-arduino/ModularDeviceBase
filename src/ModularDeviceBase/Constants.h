@@ -18,8 +18,8 @@ namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROPERTY_COUNT_MAX=1};
-enum{PARAMETER_COUNT_MAX=3};
-enum{FUNCTION_COUNT_MAX=4};
+enum{PARAMETER_COUNT_MAX=2};
+enum{FUNCTION_COUNT_MAX=2};
 enum{CALLBACK_COUNT_MAX=1};
 
 extern const long baud;
@@ -44,13 +44,28 @@ extern const Watchdog::Timeout watchdog_timeout;
 extern const size_t watchdog_reset_duration;
 
 // Pins
+extern ConstantString bnc_a_pin_name;
+extern const size_t bnc_a_pin_number;
+
+extern ConstantString bnc_b_pin_name;
+extern const size_t bnc_b_pin_number;
+
+extern ConstantString btn_a_pin_name;
+extern const size_t btn_a_pin_number;
+
+extern ConstantString btn_b_pin_name;
+extern const size_t btn_b_pin_number;
+
+extern ConstantString led_green_pin_name;
+extern const size_t led_green_pin_number;
+
+extern ConstantString led_yellow_pin_name;
+extern const size_t led_yellow_pin_number;
 
 // Units
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
-extern ConstantString leds_enabled_property_name;
-extern const bool leds_enabled_default;
 
 // Parameters
 extern ConstantString address_parameter_name;
@@ -63,17 +78,9 @@ extern ConstantString request_parameter_name;
 extern const long request_array_length_min;
 extern const long request_array_length_max;
 
-extern ConstantString led_parameter_name;
-enum{LED_SUBSET_LENGTH=2};
-extern ConstantString led_green;
-extern ConstantString led_yellow;
-extern modular_server::SubsetMemberType led_ptr_subset[LED_SUBSET_LENGTH];
-
 // Functions
 extern ConstantString forward_to_address_function_name;
 extern ConstantString get_client_info_function_name;
-extern ConstantString set_led_on_function_name;
-extern ConstantString set_led_off_function_name;
 
 // Callbacks
 extern ConstantString reset_callback_name;

@@ -30,17 +30,11 @@ License:
     "verbosity": "NAMES",
     "functions": [
       "forwardToAddress",
-      "getClientInfo",
-      "setLedOn",
-      "setLedOff"
+      "getClientInfo"
     ],
     "parameters": [
       "address",
-      "request",
-      "led"
-    ],
-    "properties": [
-      "ledsEnabled"
+      "request"
     ],
     "callbacks": [
       "reset"

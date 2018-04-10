@@ -96,43 +96,4 @@ ModularClient & ModularDeviceBase::createClientAtAddress(const T (&address_array
   return createClientAtAddress(address);
 }
 
-template <typename T>
-void ModularDeviceBase::setLedOn(T led)
-{
-  bool leds_enabled;
-  modular_server_.property(modular_device_base::constants::leds_enabled_property_name).getValue(leds_enabled);
-
-  if (led == modular_device_base::constants::led_green)
-  {
-    if (leds_enabled)
-    {
-      digitalWrite(modular_device_base::constants::led_green_pin,HIGH);
-    }
-    led_green_on_ = true;
-  }
-  else if (led == modular_device_base::constants::led_yellow)
-  {
-    if (leds_enabled)
-    {
-      digitalWrite(modular_device_base::constants::led_yellow_pin,HIGH);
-    }
-    led_yellow_on_ = true;
-  }
-}
-
-template <typename T>
-void ModularDeviceBase::setLedOff(T led)
-{
-  if (led == modular_device_base::constants::led_green)
-  {
-    digitalWrite(modular_device_base::constants::led_green_pin,LOW);
-    led_green_on_ = false;
-  }
-  else if (led == modular_device_base::constants::led_yellow)
-  {
-    digitalWrite(modular_device_base::constants::led_yellow_pin,LOW);
-    led_yellow_on_ = false;
-  }
-}
-
 #endif

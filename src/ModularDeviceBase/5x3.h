@@ -18,13 +18,13 @@ namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROCESSOR_PIN_COUNT_MAX=1};
-enum{PIN_COUNT_MAX=4};
+enum{PIN_COUNT_MAX=6};
 
 enum{SERIAL_STREAM_COUNT=4};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
-extern const size_t serial_rx_pins[SERIAL_STREAM_COUNT];
+extern const size_t serial_rx_pin_numbers[SERIAL_STREAM_COUNT];
 
 extern const size_t client_stream_ids[CLIENT_STREAM_COUNT];
 
@@ -34,21 +34,7 @@ extern ConstantString serial3_name;
 extern ConstantString serial4_name;
 extern const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT];
 
-extern const size_t led_green_pin;
-extern const size_t led_yellow_pin;
-
 // Pins
-extern ConstantString bnc_a_pin_name;
-extern const size_t bnc_a_pin;
-
-extern ConstantString bnc_b_pin_name;
-extern const size_t bnc_b_pin;
-
-extern ConstantString btn_a_pin_name;
-extern const size_t btn_a_pin;
-
-extern ConstantString btn_b_pin_name;
-extern const size_t btn_b_pin;
 
 // Units
 

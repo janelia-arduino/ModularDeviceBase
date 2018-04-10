@@ -1,0 +1,72 @@
+{
+  "id": "getApi",
+  "result": {
+    "firmware": [
+      "ModularDeviceBase"
+    ],
+    "verbosity": "GENERAL",
+    "functions": [
+      {
+        "name": "forwardToAddress",
+        "parameters": [
+          "address",
+          "request"
+        ],
+        "result_info": {
+          "type": "object"
+        }
+      },
+      {
+        "name": "getClientInfo",
+        "result_info": {
+          "type": "object"
+        }
+      }
+    ],
+    "parameters": [
+      {
+        "name": "address",
+        "type": "array",
+        "array_element_type": "long"
+      },
+      {
+        "name": "request",
+        "type": "array",
+        "array_element_type": "any"
+      }
+    ],
+    "callbacks": [
+      {
+        "name": "reset",
+        "functions": [
+          {
+            "name": "trigger"
+          },
+          {
+            "name": "attachTo",
+            "parameters": [
+              "pin_name",
+              "pin_mode"
+            ]
+          },
+          {
+            "name": "detachFrom",
+            "parameters": [
+              "pin_name"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pin_name",
+            "type": "string"
+          },
+          {
+            "name": "pin_mode",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

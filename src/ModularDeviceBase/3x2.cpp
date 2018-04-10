@@ -39,7 +39,7 @@ HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
   &Serial1,
   &Serial3,
 };
-const size_t serial_rx_pins[SERIAL_STREAM_COUNT] =
+const size_t serial_rx_pin_numbers[SERIAL_STREAM_COUNT] =
 {
   0,
   7,
@@ -59,18 +59,16 @@ const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
   &serial3_name,
 };
 
-const size_t led_green_pin = 26;
-const size_t led_yellow_pin = 27;
-
 // Pins
-CONSTANT_STRING(bnc_a_pin_name,"bnc_a");
-const size_t bnc_a_pin = 33;
+const size_t bnc_a_pin_number = 33;
 
-CONSTANT_STRING(bnc_b_pin_name,"bnc_b");
-const size_t bnc_b_pin = 32;
+const size_t bnc_b_pin_number = 32;
 
-CONSTANT_STRING(btn_a_pin_name,"btn_a");
-const size_t btn_a_pin = 31;
+const size_t btn_a_pin_number = 31;
+
+const size_t led_green_pin_number = 26;
+
+const size_t led_yellow_pin_number = 27;
 
 // Units
 
