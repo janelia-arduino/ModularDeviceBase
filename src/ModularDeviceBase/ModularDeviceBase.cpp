@@ -54,29 +54,29 @@ void ModularDeviceBase::setup()
 
   // Add Hardware
   modular_server_.addHardware(constants::processor_hardware_info,
-                              processor_interrupts_);
+                              processor_pins_);
 
 #if !defined(__AVR_ATmega2560__)
   modular_server_.addHardware(constants::hardware_info,
-                              interrupts_);
+                              pins_);
 #endif
 
-  // Interrupts
+  // Pins
 #if !defined(__AVR_ATmega2560__)
-  modular_server_.createInterrupt(constants::bnc_a_interrupt_name,
-                                  constants::bnc_a_pin);
+  modular_server_.createPin(constants::bnc_a_pin_name,
+                            constants::bnc_a_pin);
 
-  modular_server_.createInterrupt(constants::bnc_b_interrupt_name,
-                                  constants::bnc_b_pin);
+  modular_server_.createPin(constants::bnc_b_pin_name,
+                            constants::bnc_b_pin);
 
-  modular_server_.createInterrupt(constants::btn_a_interrupt_name,
-                                  constants::btn_a_pin);
+  modular_server_.createPin(constants::btn_a_pin_name,
+                            constants::btn_a_pin);
 
 #endif
 
 #if defined(__MK64FX512__)
-  modular_server_.createInterrupt(constants::btn_b_interrupt_name,
-                                  constants::btn_b_pin);
+  modular_server_.createPin(constants::btn_b_pin_name,
+                            constants::btn_b_pin);
 
 
 #endif
@@ -127,7 +127,7 @@ void ModularDeviceBase::setup()
 
   // Callbacks
   modular_server::Callback & reset_callback = modular_server_.createCallback(constants::reset_callback_name);
-  reset_callback.attachFunctor(makeFunctor((Functor1<modular_server::Interrupt *> *)0,*this,&ModularDeviceBase::resetHandler));
+  reset_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&ModularDeviceBase::resetHandler));
 
   // Begin Streams
   Serial.begin(constants::baud);
@@ -307,7 +307,7 @@ void ModularDeviceBase::setLedOffHandler()
   setLedOff(led);
 }
 
-void ModularDeviceBase::resetHandler(modular_server::Interrupt * interrupt_ptr)
+void ModularDeviceBase::resetHandler(modular_server::Pin * pin_ptr)
 {
   reset();
 }

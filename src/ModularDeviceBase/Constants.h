@@ -43,7 +43,7 @@ extern ConstantString stream_string;
 extern const Watchdog::Timeout watchdog_timeout;
 extern const size_t watchdog_reset_duration;
 
-// Interrupts
+// Pins
 
 // Units
 

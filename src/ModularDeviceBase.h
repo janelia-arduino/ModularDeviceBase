@@ -55,9 +55,9 @@ protected:
 
 private:
 
-  modular_server::Interrupt processor_interrupts_[modular_device_base::constants::PROCESSOR_INTERRUPT_COUNT_MAX];
+  modular_server::Pin processor_pins_[modular_device_base::constants::PROCESSOR_PIN_COUNT_MAX];
 
-  modular_server::Interrupt interrupts_[modular_device_base::constants::INTERRUPT_COUNT_MAX];
+  modular_server::Pin pins_[modular_device_base::constants::PIN_COUNT_MAX];
 
   modular_server::Property properties_[modular_device_base::constants::PROPERTY_COUNT_MAX];
   modular_server::Parameter parameters_[modular_device_base::constants::PARAMETER_COUNT_MAX];
@@ -88,7 +88,7 @@ private:
   void getClientInfoHandler();
   void setLedOnHandler();
   void setLedOffHandler();
-  void resetHandler(modular_server::Interrupt * interrupt_ptr);
+  void resetHandler(modular_server::Pin * pin_ptr);
 
 };
 
