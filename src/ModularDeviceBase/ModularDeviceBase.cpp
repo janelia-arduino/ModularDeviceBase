@@ -122,8 +122,10 @@ void ModularDeviceBase::setup()
 
   // Begin Streams
   Serial.begin(constants::baud);
+  Serial.setTimeout(constants::serial_timeout);
   for (size_t i=0; i<constants::SERIAL_STREAM_COUNT; ++i)
   {
+    constants::serial_stream_ptrs[i]->setTimeout(constants::serial_timeout);
     constants::serial_stream_ptrs[i]->begin(constants::baud);
   }
 

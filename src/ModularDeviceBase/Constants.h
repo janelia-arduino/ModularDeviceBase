@@ -23,6 +23,7 @@ enum{FUNCTION_COUNT_MAX=2};
 enum{CALLBACK_COUNT_MAX=1};
 
 extern const long baud;
+extern const size_t serial_timeout;
 
 extern ConstantString device_name;
 

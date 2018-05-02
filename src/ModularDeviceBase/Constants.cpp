@@ -13,6 +13,7 @@ namespace modular_device_base
 namespace constants
 {
 const long baud = 2000000;
+const size_t serial_timeout = 500;
 
 CONSTANT_STRING(device_name,"modular_device_base");
 
@@ -23,7 +24,7 @@ const modular_server::FirmwareInfo firmware_info =
   .name_ptr=&firmware_name,
   .version_major=4,
   .version_minor=0,
-  .version_patch=0,
+  .version_patch=2,
 };
 
 CONSTANT_STRING(response_string,"response");
