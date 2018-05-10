@@ -94,6 +94,8 @@ void ModularDeviceBase::setup()
                               callbacks_);
 
   // Properties
+  modular_server::Property & time_zone_offset_property = modular_server_.createProperty(constants::time_zone_offset_property_name,constants::time_zone_offset_default);
+  time_zone_offset_property.setRange(constants::time_zone_offset_min,constants::time_zone_offset_max);
 
   // Parameters
   modular_server::Parameter & address_parameter = modular_server_.createParameter(constants::address_parameter_name);
@@ -105,6 +107,14 @@ void ModularDeviceBase::setup()
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
   request_parameter.setTypeAny();
 
+  modular_server::Parameter & epoch_time_parameter = modular_server_.createParameter(constants::epoch_time_parameter_name);
+  epoch_time_parameter.setRange(constants::epoch_time_min,constants::epoch_time_max);
+  epoch_time_parameter.setUnits(constants::seconds_units);
+
+  modular_server::Parameter & adjust_time_parameter = modular_server_.createParameter(constants::adjust_time_parameter_name);
+  adjust_time_parameter.setTypeLong();
+  adjust_time_parameter.setUnits(constants::seconds_units);
+
   // Functions
   modular_server::Function & forward_to_address_function = modular_server_.createFunction(constants::forward_to_address_function_name);
   forward_to_address_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardToAddressHandler));
@@ -115,6 +125,22 @@ void ModularDeviceBase::setup()
   modular_server::Function & get_client_info_function = modular_server_.createFunction(constants::get_client_info_function_name);
   get_client_info_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getClientInfoHandler));
   get_client_info_function.setResultTypeObject();
+
+  modular_server::Function & set_time_function = modular_server_.createFunction(constants::set_time_function_name);
+  set_time_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::setTimeHandler));
+  set_time_function.addParameter(epoch_time_parameter);
+
+  modular_server::Function & get_time_function = modular_server_.createFunction(constants::get_time_function_name);
+  get_time_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getTimeHandler));
+  get_time_function.setResultTypeLong();
+
+  modular_server::Function & adjust_time_function = modular_server_.createFunction(constants::adjust_time_function_name);
+  adjust_time_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::adjustTimeHandler));
+  adjust_time_function.addParameter(adjust_time_parameter);
+
+  modular_server::Function & now_function = modular_server_.createFunction(constants::now_function_name);
+  now_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::nowHandler));
+  now_function.setResultTypeObject();
 
   // Callbacks
   modular_server::Callback & reset_callback = modular_server_.createCallback(constants::reset_callback_name);
@@ -152,10 +178,60 @@ void ModularDeviceBase::reset()
   system_reset_ = true;
 }
 
+void ModularDeviceBase::setTime(const time_t epoch_time)
+{
+  ::setTime(epoch_time);
+}
+
+time_t ModularDeviceBase::getTime()
+{
+  return ::now();
+}
+
+void ModularDeviceBase::adjustTime(const long adjust_time)
+{
+  ::adjustTime(adjust_time);
+}
+
+time_t ModularDeviceBase::now()
+{
+  return ::now();
+}
+
 void ModularDeviceBase::resetWatchdog()
 {
   watchdog_reset_time_ = millis();
   watchdog_.reset();
+}
+
+bool ModularDeviceBase::timeIsSet()
+{
+  timeStatus_t time_status = timeStatus();
+  return (time_status != timeNotSet);
+}
+
+time_t ModularDeviceBase::epochTimeToLocalTime(const time_t epoch_time)
+{
+  long time_zone_offset;
+  modular_server_.property(constants::time_zone_offset_property_name).getValue(time_zone_offset);
+
+  return epoch_time + time_zone_offset*constants::seconds_per_hour;
+}
+
+void ModularDeviceBase::writeDateTimeToResponse(const time_t time)
+{
+  time_t local_time = epochTimeToLocalTime(time);
+
+  modular_server_.response().beginObject();
+
+  modular_server_.response().write(constants::year_string,year(local_time));
+  modular_server_.response().write(constants::month_string,month(local_time));
+  modular_server_.response().write(constants::day_string,day(local_time));
+  modular_server_.response().write(constants::hour_string,hour(local_time));
+  modular_server_.response().write(constants::minute_string,minute(local_time));
+  modular_server_.response().write(constants::second_string,second(local_time));
+
+  modular_server_.response().endObject();
 }
 
 JsonStream * ModularDeviceBase::findClientJsonStream(const size_t stream_id)
@@ -257,4 +333,41 @@ void ModularDeviceBase::getClientInfoHandler()
 void ModularDeviceBase::resetHandler(modular_server::Pin * pin_ptr)
 {
   reset();
+}
+
+void ModularDeviceBase::setTimeHandler()
+{
+  long epoch_time;
+  modular_server_.parameter(constants::epoch_time_parameter_name).getValue(epoch_time);
+  ModularDeviceBase::setTime(epoch_time);
+}
+
+void ModularDeviceBase::getTimeHandler()
+{
+  if (!timeIsSet())
+  {
+    modular_server_.response().returnError(constants::time_not_set_error);
+    return;
+  }
+  time_t epoch_time = getTime();
+  modular_server_.response().returnResult(epoch_time);
+}
+
+void ModularDeviceBase::adjustTimeHandler()
+{
+  long adjust_time;
+  modular_server_.parameter(constants::adjust_time_parameter_name).getValue(adjust_time);
+  ModularDeviceBase::adjustTime(adjust_time);
+}
+
+void ModularDeviceBase::nowHandler()
+{
+  if (!timeIsSet())
+  {
+    modular_server_.response().returnError(constants::time_not_set_error);
+    return;
+  }
+  time_t time_now = ModularDeviceBase::now();
+  modular_server_.response().writeResultKey();
+  writeDateTimeToResponse(time_now);
 }

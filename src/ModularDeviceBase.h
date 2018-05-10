@@ -14,6 +14,7 @@
 #include <ConstantVariable.h>
 #include <Functor.h>
 #include <Watchdog.h>
+#include <Time.h>
 
 #include <ModularClient.h>
 
@@ -42,11 +43,19 @@ public:
 
   void reset();
 
+  void setTime(const time_t epoch_time);
+  time_t getTime();
+  void adjustTime(const long adjust_time);
+  time_t now();
+
 protected:
 
   modular_server::ModularServer modular_server_;
 
   void resetWatchdog();
+  bool timeIsSet();
+  time_t epochTimeToLocalTime(const time_t epoch_time);
+  void writeDateTimeToResponse(const time_t time);
 
 private:
 
@@ -78,6 +87,10 @@ private:
   void forwardToAddressHandler();
   void getClientInfoHandler();
   void resetHandler(modular_server::Pin * pin_ptr);
+  void setTimeHandler();
+  void getTimeHandler();
+  void adjustTimeHandler();
+  void nowHandler();
 
 };
 

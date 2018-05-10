@@ -23,8 +23,8 @@ const modular_server::FirmwareInfo firmware_info =
 {
   .name_ptr=&firmware_name,
   .version_major=4,
-  .version_minor=0,
-  .version_patch=2,
+  .version_minor=1,
+  .version_patch=0,
 };
 
 CONSTANT_STRING(response_string,"response");
@@ -46,11 +46,39 @@ CONSTANT_STRING(led_green_pin_name,"led_green");
 
 CONSTANT_STRING(led_yellow_pin_name,"led_yellow");
 
+const long seconds_per_minute = 60;
+const long minutes_per_hour = 60;
+const long hours_per_day = 24;
+const long milliseconds_per_second = 1000;
+const long milliseconds_per_minute = milliseconds_per_second*seconds_per_minute;
+const long milliseconds_per_hour = milliseconds_per_second*seconds_per_minute*minutes_per_hour;
+const long milliseconds_per_day = milliseconds_per_hour*hours_per_day;
+const long seconds_per_hour = seconds_per_minute*minutes_per_hour;
+const long seconds_per_day = seconds_per_hour*hours_per_day;
+
+CONSTANT_STRING(year_string,"year");
+CONSTANT_STRING(month_string,"month");
+CONSTANT_STRING(day_string,"day");
+CONSTANT_STRING(hour_string,"hour");
+CONSTANT_STRING(minute_string,"minute");
+CONSTANT_STRING(second_string,"second");
+
 // Units
+CONSTANT_STRING(seconds_units,"s");
 
 // Properties
+CONSTANT_STRING(time_zone_offset_property_name,"timeZoneOffset");
+const long time_zone_offset_min = -12;
+const long time_zone_offset_max = 14;
+const long time_zone_offset_default = -4;
 
 // Parameters
+CONSTANT_STRING(epoch_time_parameter_name,"epoch_time");
+const long epoch_time_min = 1490000000;
+const long epoch_time_max = 2147483647;
+
+CONSTANT_STRING(adjust_time_parameter_name,"adjust_time");
+
 CONSTANT_STRING(address_parameter_name,"address");
 const long address_min = 1;
 const long address_max = modular_server::constants::SERVER_STREAM_COUNT_MAX;
@@ -64,10 +92,15 @@ const long request_array_length_max = modular_server::constants::FUNCTION_PARAME
 // Functions
 CONSTANT_STRING(forward_to_address_function_name,"forwardToAddress");
 CONSTANT_STRING(get_client_info_function_name,"getClientInfo");
+CONSTANT_STRING(set_time_function_name,"setTime");
+CONSTANT_STRING(get_time_function_name,"getTime");
+CONSTANT_STRING(adjust_time_function_name,"adjustTime");
+CONSTANT_STRING(now_function_name,"now");
 
 // Callbacks
 CONSTANT_STRING(reset_callback_name,"reset");
 
 // Errors
+CONSTANT_STRING(time_not_set_error,"Time is not set! Must use setTime method. To get epoch time manually, you can visit https://www.epochconverter.com/ or use bash: date +%s");
 }
 }
