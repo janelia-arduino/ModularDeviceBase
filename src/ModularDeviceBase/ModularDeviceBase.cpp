@@ -94,6 +94,10 @@ void ModularDeviceBase::setup()
                               callbacks_);
 
   // Properties
+  modular_server::Property & clients_enabled_property = modular_server_.createProperty(constants::clients_enabled_property_name,constants::clients_enabled_default);
+  clients_enabled_property.setArrayLengthRange(0,0);
+  clients_enabled_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&ModularDeviceBase::setClientEnabledHandler));
+
   modular_server::Property & time_zone_offset_property = modular_server_.createProperty(constants::time_zone_offset_property_name,constants::time_zone_offset_default);
   time_zone_offset_property.setRange(constants::time_zone_offset_min,constants::time_zone_offset_max);
 
@@ -315,6 +319,10 @@ void ModularDeviceBase::getClientInfoHandler()
 
     modular_server_.response().beginObject();
 
+    modular_server_.response().write(modular_server::constants::name_constant_string,client.getName());
+
+    modular_server_.response().write(modular_device_base::constants::enabled_string,client.enabled());
+
     int client_stream_index = findClientStreamIndex(client.getStream());
     if (client_stream_index >= 0)
     {
@@ -328,6 +336,26 @@ void ModularDeviceBase::getClientInfoHandler()
   }
 
   modular_server_.response().endArray();
+}
+
+void ModularDeviceBase::setClientEnabledHandler(const size_t client_index)
+{
+  bool enabled;
+  modular_server_.property(constants::clients_enabled_property_name).getElementValue(client_index,enabled);
+
+  if (client_index < clients_.size())
+  {
+    ModularClient & client = clients_[client_index];
+    if (enabled)
+    {
+      client.enable();
+    }
+    else
+    {
+      client.disable();
+    }
+  }
+
 }
 
 void ModularDeviceBase::resetHandler(modular_server::Pin * pin_ptr)

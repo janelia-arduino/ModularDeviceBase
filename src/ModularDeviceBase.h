@@ -72,7 +72,7 @@ private:
                 modular_device_base::constants::CLIENT_STREAM_COUNT> client_streams_t;
   client_streams_t client_streams_;
 
-  Array<ModularClient,modular_client::constants::ADDRESS_ID_COUNT_MAX> clients_;
+  Array<ModularClient,modular_device_base::constants::CLIENT_COUNT_MAX> clients_;
   ModularClient dummy_client_;
 
   Watchdog watchdog_;
@@ -86,6 +86,7 @@ private:
   // Handlers
   void forwardToAddressHandler();
   void getClientInfoHandler();
+  void setClientEnabledHandler(const size_t client_index);
   void resetHandler(modular_server::Pin * pin_ptr);
   void setTimeHandler();
   void getTimeHandler();

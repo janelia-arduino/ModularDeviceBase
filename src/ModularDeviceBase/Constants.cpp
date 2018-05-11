@@ -23,12 +23,13 @@ const modular_server::FirmwareInfo firmware_info =
 {
   .name_ptr=&firmware_name,
   .version_major=4,
-  .version_minor=1,
+  .version_minor=2,
   .version_patch=0,
 };
 
 CONSTANT_STRING(response_string,"response");
 CONSTANT_STRING(stream_string,"stream");
+CONSTANT_STRING(enabled_string,"enabled");
 
 extern const Watchdog::Timeout watchdog_timeout = Watchdog::TIMEOUT_2S;
 extern const size_t watchdog_reset_duration = 200;
@@ -67,6 +68,27 @@ CONSTANT_STRING(second_string,"second");
 CONSTANT_STRING(seconds_units,"s");
 
 // Properties
+CONSTANT_STRING(clients_enabled_property_name,"clientsEnabled");
+const bool clients_enabled_default[CLIENT_COUNT_MAX] =
+{
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+};
+
 CONSTANT_STRING(time_zone_offset_property_name,"timeZoneOffset");
 const long time_zone_offset_min = -12;
 const long time_zone_offset_max = 14;

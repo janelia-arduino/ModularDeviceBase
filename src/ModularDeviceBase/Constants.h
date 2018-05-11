@@ -17,10 +17,12 @@ namespace modular_device_base
 namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
-enum{PROPERTY_COUNT_MAX=1};
+enum{PROPERTY_COUNT_MAX=2};
 enum{PARAMETER_COUNT_MAX=4};
 enum{FUNCTION_COUNT_MAX=6};
 enum{CALLBACK_COUNT_MAX=1};
+
+enum{CLIENT_COUNT_MAX=16};
 
 extern const long baud;
 extern const size_t serial_timeout;
@@ -40,6 +42,7 @@ extern const modular_server::HardwareInfo hardware_info;
 
 extern ConstantString response_string;
 extern ConstantString stream_string;
+extern ConstantString enabled_string;
 
 extern const Watchdog::Timeout watchdog_timeout;
 extern const size_t watchdog_reset_duration;
@@ -85,6 +88,9 @@ extern ConstantString seconds_units;
 
 // Properties
 // Property values must be long, double, bool, long[], double[], bool[], char[], ConstantString *, (ConstantString *)[]
+extern ConstantString clients_enabled_property_name;
+extern const bool clients_enabled_default[CLIENT_COUNT_MAX];
+
 extern ConstantString time_zone_offset_property_name;
 extern const long time_zone_offset_min;
 extern const long time_zone_offset_max;

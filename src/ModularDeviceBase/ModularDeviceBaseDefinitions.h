@@ -86,6 +86,9 @@ ModularClient & ModularDeviceBase::createClientAtAddress(T & address_array)
     client_ptr = &(clients_.back());
   }
 
+  modular_server::Property & clients_enabled_property = modular_server_.property(modular_device_base::constants::clients_enabled_property_name);
+  clients_enabled_property.setArrayLengthRange(clients_.size(),clients_.size());
+
   return *client_ptr;
 }
 
