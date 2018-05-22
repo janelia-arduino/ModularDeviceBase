@@ -3,33 +3,70 @@
 #+EMAIL: peterpolidoro@gmail.com
 
 * Library Information
-  - Author :: Peter Polidoro
+  - Name :: ModularDeviceBase
+  - Version :: 4.2.0
   - License :: BSD
+  - URL :: https://github.com/janelia-arduino/ModularDeviceBase
+  - Author :: Peter Polidoro
+  - Email :: peterpolidoro@gmail.com
+
+** Description
+
+   Modular device base library.
+
+* API NAMES
+
+  #+BEGIN_SRC js
+    {
+      "id": "getApi",
+      "result": {
+        "firmware": [
+          "ModularDeviceBase"
+        ],
+        "verbosity": "NAMES",
+        "functions": [
+          "forwardToAddress",
+          "getClientInfo",
+          "setTime",
+          "getTime",
+          "adjustTime",
+          "now"
+        ],
+        "parameters": [
+          "address",
+          "request",
+          "epoch_time",
+          "adjust_time"
+        ],
+        "properties": [
+          "clientsEnabled",
+          "timeZoneOffset"
+        ],
+        "callbacks": [
+          "reset"
+        ]
+      }
+    }
+  #+END_SRC
+
+* API GENERAL
+
+  [[./api/]]
 
 * Ancestors
 
-  [[https://github.com/janelia-arduino/ModularServer][ModularServer]]
+  [[https://github.com/janelia-arduino/ModularServer]]
 
 * Clients
 
 * Devices
 
-  [[https://github.com/janelia-modular-devices/modular_device_base.git][modular_device_base]]
-
-* API NAMES
-
-  #+BEGIN_SRC js
-
-  #+END_SRC
-
-* API GENERAL
-
-  [[./api/][API GENERAL]]
+  [[https://github.com/janelia-modular-devices/modular_device_base.git]]
 
 * More Detailed Modular Device Information
 
-  [[https://github.com/janelia-modular-devices/modular-devices][modular-devices]]
+  [[https://github.com/janelia-modular-devices/modular-devices]]
 
-* Library Dependencies
+* Installation Instructions
 
-  [[https://github.com/janelia-arduino/arduino-libraries][arduino-libraries]]
+  [[https://github.com/janelia-arduino/arduino-libraries]]
