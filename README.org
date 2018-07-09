@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: ModularDeviceBase
-  - Version :: 4.2.0
+  - Version :: 4.3.0
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/ModularDeviceBase
   - Author :: Peter Polidoro
@@ -43,7 +43,9 @@
           "timeZoneOffset"
         ],
         "callbacks": [
-          "reset"
+          "reset",
+          "resetClients",
+          "resetAll"
         ]
       }
     }

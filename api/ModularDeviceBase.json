@@ -260,6 +260,68 @@
             "type": "string"
           }
         ]
+      },
+      {
+        "name": "resetClients",
+        "functions": [
+          {
+            "name": "trigger"
+          },
+          {
+            "name": "attachTo",
+            "parameters": [
+              "pin_name",
+              "pin_mode"
+            ]
+          },
+          {
+            "name": "detachFrom",
+            "parameters": [
+              "pin_name"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pin_name",
+            "type": "string"
+          },
+          {
+            "name": "pin_mode",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "resetAll",
+        "functions": [
+          {
+            "name": "trigger"
+          },
+          {
+            "name": "attachTo",
+            "parameters": [
+              "pin_name",
+              "pin_mode"
+            ]
+          },
+          {
+            "name": "detachFrom",
+            "parameters": [
+              "pin_name"
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "pin_name",
+            "type": "string"
+          },
+          {
+            "name": "pin_mode",
+            "type": "string"
+          }
+        ]
       }
     ]
   }

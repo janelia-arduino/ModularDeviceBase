@@ -23,7 +23,7 @@ const modular_server::FirmwareInfo firmware_info =
 {
   .name_ptr=&firmware_name,
   .version_major=4,
-  .version_minor=2,
+  .version_minor=3,
   .version_patch=0,
 };
 
@@ -121,6 +121,8 @@ CONSTANT_STRING(now_function_name,"now");
 
 // Callbacks
 CONSTANT_STRING(reset_callback_name,"reset");
+CONSTANT_STRING(reset_clients_callback_name,"resetClients");
+CONSTANT_STRING(reset_all_callback_name,"resetAll");
 
 // Errors
 CONSTANT_STRING(time_not_set_error,"Time is not set! Must use setTime method. To get epoch time manually, you can visit https://www.epochconverter.com/ or use bash: date +%s");

@@ -150,6 +150,12 @@ void ModularDeviceBase::setup()
   modular_server::Callback & reset_callback = modular_server_.createCallback(constants::reset_callback_name);
   reset_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&ModularDeviceBase::resetHandler));
 
+  modular_server::Callback & reset_clients_callback = modular_server_.createCallback(constants::reset_clients_callback_name);
+  reset_clients_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&ModularDeviceBase::resetClientsHandler));
+
+  modular_server::Callback & reset_all_callback = modular_server_.createCallback(constants::reset_all_callback_name);
+  reset_all_callback.attachFunctor(makeFunctor((Functor1<modular_server::Pin *> *)0,*this,&ModularDeviceBase::resetAllHandler));
+
   // Begin Streams
   Serial.begin(constants::baud);
   Serial.setTimeout(constants::serial_timeout);
@@ -180,6 +186,28 @@ void ModularDeviceBase::update()
 void ModularDeviceBase::reset()
 {
   system_reset_ = true;
+}
+
+void ModularDeviceBase::resetClients()
+{
+  for (long address_id_count=modular_client::constants::ADDRESS_ID_COUNT_MAX; address_id_count>=0; --address_id_count)
+  {
+    for (size_t client_index=0; client_index<clients_.size(); ++client_index)
+    {
+      ModularClient & client = clients_[client_index];
+
+      if (client.getAddress().size() == (size_t)address_id_count)
+      {
+        client.callUntilSuccessful(constants::reset_callback_name);
+      }
+    }
+  }
+}
+
+void ModularDeviceBase::resetAll()
+{
+  resetClients();
+  reset();
 }
 
 void ModularDeviceBase::setTime(const time_t epoch_time)
@@ -361,6 +389,16 @@ void ModularDeviceBase::setClientEnabledHandler(const size_t client_index)
 void ModularDeviceBase::resetHandler(modular_server::Pin * pin_ptr)
 {
   reset();
+}
+
+void ModularDeviceBase::resetClientsHandler(modular_server::Pin * pin_ptr)
+{
+  resetClients();
+}
+
+void ModularDeviceBase::resetAllHandler(modular_server::Pin * pin_ptr)
+{
+  resetAll();
 }
 
 void ModularDeviceBase::setTimeHandler()

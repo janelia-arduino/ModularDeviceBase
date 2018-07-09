@@ -42,6 +42,8 @@ public:
   ModularClient & createClientAtAddress(const T (&address_array)[N]);
 
   void reset();
+  void resetClients();
+  void resetAll();
 
   void setTime(const time_t epoch_time);
   time_t getTime();
@@ -88,6 +90,8 @@ private:
   void getClientInfoHandler();
   void setClientEnabledHandler(const size_t client_index);
   void resetHandler(modular_server::Pin * pin_ptr);
+  void resetClientsHandler(modular_server::Pin * pin_ptr);
+  void resetAllHandler(modular_server::Pin * pin_ptr);
   void setTimeHandler();
   void getTimeHandler();
   void adjustTimeHandler();

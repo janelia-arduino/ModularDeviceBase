@@ -20,7 +20,7 @@ namespace constants
 enum{PROPERTY_COUNT_MAX=2};
 enum{PARAMETER_COUNT_MAX=4};
 enum{FUNCTION_COUNT_MAX=6};
-enum{CALLBACK_COUNT_MAX=1};
+enum{CALLBACK_COUNT_MAX=3};
 
 enum{CLIENT_COUNT_MAX=16};
 
@@ -123,6 +123,8 @@ extern ConstantString now_function_name;
 
 // Callbacks
 extern ConstantString reset_callback_name;
+extern ConstantString reset_clients_callback_name;
+extern ConstantString reset_all_callback_name;
 
 // Errors
 extern ConstantString time_not_set_error;
