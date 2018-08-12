@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro polidorop@janelia.hhmi.org
+// Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
 #ifndef _CLIENT_STREAM_H_
 #define _CLIENT_STREAM_H_
