@@ -32,22 +32,24 @@ public:
   virtual void startServer();
   virtual void update();
 
-  template<typename T, typename U>
+  template<typename T,
+    typename U>
   bool forwardToAddress(T & address_array,
-                        U & request_array);
+    U & request_array);
 
   template<typename T>
   ModularClient & createClientAtAddress(T & address_array);
-  template <typename T, size_t N>
+  template <typename T,
+    size_t N>
   ModularClient & createClientAtAddress(const T (&address_array)[N]);
 
   void reset();
   void resetClients();
   void resetAll();
 
-  void setTime(const time_t epoch_time);
+  void setTime(time_t epoch_time);
   time_t getTime();
-  void adjustTime(const long adjust_time);
+  void adjustTime(long adjust_time);
   time_t now();
 
 protected:
@@ -56,8 +58,8 @@ protected:
 
   void resetWatchdog();
   bool timeIsSet();
-  time_t epochTimeToLocalTime(const time_t epoch_time);
-  void writeDateTimeToResponse(const time_t time);
+  time_t epochTimeToLocalTime(time_t epoch_time);
+  void writeDateTimeToResponse(time_t time);
 
 private:
 
@@ -71,7 +73,7 @@ private:
   modular_server::Callback callbacks_[modular_device_base::constants::CALLBACK_COUNT_MAX];
 
   typedef Array<modular_device_base::ClientStream,
-                modular_device_base::constants::CLIENT_STREAM_COUNT> client_streams_t;
+    modular_device_base::constants::CLIENT_STREAM_COUNT> client_streams_t;
   client_streams_t client_streams_;
 
   Array<ModularClient,modular_device_base::constants::CLIENT_COUNT_MAX> clients_;
@@ -81,14 +83,14 @@ private:
   unsigned long watchdog_reset_time_;
   bool system_reset_;
 
-  JsonStream * findClientJsonStream(const size_t stream_id);
-  int findClientStreamIndex(const size_t stream_id);
+  JsonStream * findClientJsonStream(size_t stream_id);
+  int findClientStreamIndex(size_t stream_id);
   int findClientStreamIndex(Stream & stream);
 
   // Handlers
   void forwardToAddressHandler();
   void getClientInfoHandler();
-  void setClientEnabledHandler(const size_t client_index);
+  void setClientEnabledHandler(size_t client_index);
   void resetHandler(modular_server::Pin * pin_ptr);
   void resetClientsHandler(modular_server::Pin * pin_ptr);
   void resetAllHandler(modular_server::Pin * pin_ptr);

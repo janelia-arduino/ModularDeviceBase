@@ -50,53 +50,53 @@ void ModularDeviceBase::setup()
 
   // Add Hardware
   modular_server_.addHardware(constants::processor_hardware_info,
-                              processor_pins_);
+    processor_pins_);
 
 #if !defined(__AVR_ATmega2560__)
   modular_server_.addHardware(constants::hardware_info,
-                              pins_);
+    pins_);
 #endif
 
   // Pins
 #if !defined(__AVR_ATmega2560__)
   modular_server_.createPin(constants::bnc_a_pin_name,
-                            constants::bnc_a_pin_number);
+    constants::bnc_a_pin_number);
 
   modular_server_.createPin(constants::bnc_b_pin_name,
-                            constants::bnc_b_pin_number);
+    constants::bnc_b_pin_number);
 
   modular_server_.createPin(constants::btn_a_pin_name,
-                            constants::btn_a_pin_number);
+    constants::btn_a_pin_number);
 
   modular_server::Pin & led_green_pin = modular_server_.createPin(constants::led_green_pin_name,
-                                                                  constants::led_green_pin_number);
+    constants::led_green_pin_number);
   led_green_pin.setModeDigitalOutput();
   led_green_pin.setValue(HIGH);
 
   modular_server::Pin & led_yellow_pin = modular_server_.createPin(constants::led_yellow_pin_name,
-                                                                   constants::led_yellow_pin_number);
+    constants::led_yellow_pin_number);
   led_yellow_pin.setModeDigitalOutput();
 
 #endif
 
 #if defined(__MK64FX512__)
   modular_server_.createPin(constants::btn_b_pin_name,
-                            constants::btn_b_pin_number);
+    constants::btn_b_pin_number);
 
 
 #endif
 
   // Add Firmware
   modular_server_.addFirmware(constants::firmware_info,
-                              properties_,
-                              parameters_,
-                              functions_,
-                              callbacks_);
+    properties_,
+    parameters_,
+    functions_,
+    callbacks_);
 
   // Properties
   modular_server::Property & clients_enabled_property = modular_server_.createProperty(constants::clients_enabled_property_name,constants::clients_enabled_default);
   clients_enabled_property.setArrayLengthRange(0,0);
-  clients_enabled_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<const size_t> *)0,*this,&ModularDeviceBase::setClientEnabledHandler));
+  clients_enabled_property.attachPostSetElementValueFunctor(makeFunctor((Functor1<size_t> *)0,*this,&ModularDeviceBase::setClientEnabledHandler));
 
   modular_server::Property & time_zone_offset_property = modular_server_.createProperty(constants::time_zone_offset_property_name,constants::time_zone_offset_default);
   time_zone_offset_property.setRange(constants::time_zone_offset_min,constants::time_zone_offset_max);
@@ -210,7 +210,7 @@ void ModularDeviceBase::resetAll()
   reset();
 }
 
-void ModularDeviceBase::setTime(const time_t epoch_time)
+void ModularDeviceBase::setTime(time_t epoch_time)
 {
   ::setTime(epoch_time);
 }
@@ -220,7 +220,7 @@ time_t ModularDeviceBase::getTime()
   return ::now();
 }
 
-void ModularDeviceBase::adjustTime(const long adjust_time)
+void ModularDeviceBase::adjustTime(long adjust_time)
 {
   ::adjustTime(adjust_time);
 }
@@ -242,7 +242,7 @@ bool ModularDeviceBase::timeIsSet()
   return (time_status != timeNotSet);
 }
 
-time_t ModularDeviceBase::epochTimeToLocalTime(const time_t epoch_time)
+time_t ModularDeviceBase::epochTimeToLocalTime(time_t epoch_time)
 {
   long time_zone_offset;
   modular_server_.property(constants::time_zone_offset_property_name).getValue(time_zone_offset);
@@ -250,7 +250,7 @@ time_t ModularDeviceBase::epochTimeToLocalTime(const time_t epoch_time)
   return epoch_time + time_zone_offset*constants::seconds_per_hour;
 }
 
-void ModularDeviceBase::writeDateTimeToResponse(const time_t time)
+void ModularDeviceBase::writeDateTimeToResponse(time_t time)
 {
   time_t local_time = epochTimeToLocalTime(time);
 
@@ -266,7 +266,7 @@ void ModularDeviceBase::writeDateTimeToResponse(const time_t time)
   modular_server_.response().endObject();
 }
 
-JsonStream * ModularDeviceBase::findClientJsonStream(const size_t stream_id)
+JsonStream * ModularDeviceBase::findClientJsonStream(size_t stream_id)
 {
   JsonStream * json_stream_ptr = NULL;
   int stream_index = findClientStreamIndex(stream_id);
@@ -277,7 +277,7 @@ JsonStream * ModularDeviceBase::findClientJsonStream(const size_t stream_id)
   return json_stream_ptr;
 }
 
-int ModularDeviceBase::findClientStreamIndex(const size_t stream_id)
+int ModularDeviceBase::findClientStreamIndex(size_t stream_id)
 {
   int stream_index = -1;
   for (size_t i=0; i<constants::CLIENT_STREAM_COUNT; ++i)
@@ -366,7 +366,7 @@ void ModularDeviceBase::getClientInfoHandler()
   modular_server_.response().endArray();
 }
 
-void ModularDeviceBase::setClientEnabledHandler(const size_t client_index)
+void ModularDeviceBase::setClientEnabledHandler(size_t client_index)
 {
   bool enabled;
   modular_server_.property(constants::clients_enabled_property_name).getElementValue(client_index,enabled);

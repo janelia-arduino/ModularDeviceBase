@@ -26,7 +26,7 @@ JsonStream & ClientStream::getJsonStream()
   return json_stream_;
 }
 
-void ClientStream::setId(const size_t id)
+void ClientStream::setId(size_t id)
 {
   id_ = id;
 }
@@ -46,12 +46,14 @@ const ConstantString & ClientStream::getName()
   return *name_ptr_;
 }
 
-bool operator==(const size_t lhs, ClientStream & rhs)
+bool operator==(size_t lhs,
+  ClientStream & rhs)
 {
   return (lhs == rhs.getId());
 }
 
-bool operator==(ClientStream & lhs, const size_t rhs)
+bool operator==(ClientStream & lhs,
+  size_t rhs)
 {
   return (rhs == lhs);
 }

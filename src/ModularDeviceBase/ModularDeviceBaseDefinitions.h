@@ -9,9 +9,10 @@
 #define _MODULAR_DEVICE_BASE_DEFINITIONS_H_
 
 
-template<typename T, typename U>
+template<typename T,
+  typename U>
 bool ModularDeviceBase::forwardToAddress(T & address_array,
-                                         U & request_array)
+  U & request_array)
 {
   bool succeeded = false;
   size_t address_array_size = address_array.size();
@@ -92,7 +93,8 @@ ModularClient & ModularDeviceBase::createClientAtAddress(T & address_array)
   return *client_ptr;
 }
 
-template <typename T, size_t N>
+template <typename T,
+  size_t N>
 ModularClient & ModularDeviceBase::createClientAtAddress(const T (&address_array)[N])
 {
   Array<size_t,modular_client::constants::ADDRESS_ID_COUNT_MAX> address(address_array);

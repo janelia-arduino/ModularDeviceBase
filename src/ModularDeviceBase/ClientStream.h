@@ -20,7 +20,7 @@ public:
   Stream & getStream();
   JsonStream & getJsonStream();
 
-  void setId(const size_t id);
+  void setId(size_t id);
   size_t getId();
 
   void setName(const ConstantString & name);
@@ -33,8 +33,10 @@ private:
 
 };
 
-bool operator==(const size_t lhs, ClientStream & rhs);
-bool operator==(ClientStream & lhs, const size_t rhs);
+bool operator==(size_t lhs,
+  ClientStream & rhs);
+bool operator==(ClientStream & lhs,
+  size_t rhs);
 
 }
 #endif
