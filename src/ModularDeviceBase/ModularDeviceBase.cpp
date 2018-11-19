@@ -389,11 +389,7 @@ void ModularDeviceBase::getClientInfoHandler()
 
     modular_server_.response().write(modular_device_base::constants::enabled_string,client.enabled());
 
-    int client_stream_index = findClientStreamIndex(client.getStream());
-    if (client_stream_index >= 0)
-    {
-      modular_server_.response().write(constants::address_parameter_name,client_addresses_[client_stream_index]);
-    }
+    modular_server_.response().write(constants::address_parameter_name,client_addresses_[client_index]);
 
     modular_server_.response().endObject();
   }
