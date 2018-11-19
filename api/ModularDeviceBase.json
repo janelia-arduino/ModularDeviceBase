@@ -17,6 +17,16 @@
         }
       },
       {
+        "name": "forwardToClient",
+        "parameters": [
+          "client",
+          "request"
+        ],
+        "result_info": {
+          "type": "object"
+        }
+      },
+      {
         "name": "getClientInfo",
         "result_info": {
           "type": "object"
@@ -57,6 +67,10 @@
         "name": "request",
         "type": "array",
         "array_element_type": "any"
+      },
+      {
+        "name": "client",
+        "type": "string"
       },
       {
         "name": "epoch_time",

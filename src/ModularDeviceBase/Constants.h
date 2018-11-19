@@ -18,8 +18,8 @@ namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROPERTY_COUNT_MAX=2};
-enum{PARAMETER_COUNT_MAX=4};
-enum{FUNCTION_COUNT_MAX=6};
+enum{PARAMETER_COUNT_MAX=5};
+enum{FUNCTION_COUNT_MAX=7};
 enum{CALLBACK_COUNT_MAX=3};
 
 enum{CLIENT_COUNT_MAX=16};
@@ -107,6 +107,8 @@ extern ConstantString request_parameter_name;
 extern const long request_array_length_min;
 extern const long request_array_length_max;
 
+extern ConstantString client_parameter_name;
+
 extern ConstantString epoch_time_parameter_name;
 extern const long epoch_time_min;
 extern const long epoch_time_max;
@@ -115,6 +117,7 @@ extern ConstantString adjust_time_parameter_name;
 
 // Functions
 extern ConstantString forward_to_address_function_name;
+extern ConstantString forward_to_client_function_name;
 extern ConstantString get_client_info_function_name;
 extern ConstantString set_time_function_name;
 extern ConstantString get_time_function_name;
@@ -127,6 +130,8 @@ extern ConstantString reset_clients_callback_name;
 extern ConstantString reset_all_callback_name;
 
 // Errors
+extern ConstantString unable_to_foward_to_address_error;
+extern ConstantString unable_to_foward_to_client_error;
 extern ConstantString time_not_set_error;
 }
 }

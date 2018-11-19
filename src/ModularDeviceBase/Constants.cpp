@@ -22,9 +22,9 @@ CONSTANT_STRING(firmware_name,"ModularDeviceBase");
 const modular_server::FirmwareInfo firmware_info =
 {
   .name_ptr=&firmware_name,
-  .version_major=4,
-  .version_minor=3,
-  .version_patch=1,
+  .version_major=5,
+  .version_minor=0,
+  .version_patch=0,
 };
 
 CONSTANT_STRING(response_string,"response");
@@ -111,8 +111,11 @@ CONSTANT_STRING(request_parameter_name,"request");
 const long request_array_length_min = 1;
 const long request_array_length_max = modular_server::constants::FUNCTION_PARAMETER_COUNT_MAX;
 
+CONSTANT_STRING(client_parameter_name,"client");
+
 // Functions
 CONSTANT_STRING(forward_to_address_function_name,"forwardToAddress");
+CONSTANT_STRING(forward_to_client_function_name,"forwardToClient");
 CONSTANT_STRING(get_client_info_function_name,"getClientInfo");
 CONSTANT_STRING(set_time_function_name,"setTime");
 CONSTANT_STRING(get_time_function_name,"getTime");
@@ -125,6 +128,8 @@ CONSTANT_STRING(reset_clients_callback_name,"resetClients");
 CONSTANT_STRING(reset_all_callback_name,"resetAll");
 
 // Errors
+CONSTANT_STRING(unable_to_foward_to_address_error,"Unable to forward to address.");
+CONSTANT_STRING(unable_to_foward_to_client_error,"Unable to forward to client.");
 CONSTANT_STRING(time_not_set_error,"Time is not set! Must use setTime method. To get epoch time manually, you can visit https://www.epochconverter.com/ or use bash: date +%s");
 }
 }

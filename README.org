@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: ModularDeviceBase
-  - Version :: 4.3.1
+  - Version :: 5.0.0
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/ModularDeviceBase
   - Author :: Peter Polidoro
@@ -26,6 +26,7 @@
         "verbosity": "NAMES",
         "functions": [
           "forwardToAddress",
+          "forwardToClient",
           "getClientInfo",
           "setTime",
           "getTime",
@@ -35,6 +36,7 @@
         "parameters": [
           "address",
           "request",
+          "client",
           "epoch_time",
           "adjust_time"
         ],

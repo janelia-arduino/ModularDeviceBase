@@ -36,12 +36,18 @@ public:
     typename U>
   bool forwardToAddress(T & address_array,
     U & request_array);
+  template<typename T,
+    typename U>
+  bool forwardToClient(T & client_name,
+    U & request_array);
 
   template<typename T>
-  ModularClient & createClientAtAddress(T & address_array);
+  ModularClient & createClientAtAddress(const ConstantString & client_name,
+    T & address_array);
   template <typename T,
     size_t N>
-  ModularClient & createClientAtAddress(const T (&address_array)[N]);
+  ModularClient & createClientAtAddress(const ConstantString & client_name,
+    const T (&address_array)[N]);
 
   void reset();
   void resetClients();
@@ -77,6 +83,8 @@ private:
   client_streams_t client_streams_;
 
   Array<ModularClient,modular_device_base::constants::CLIENT_COUNT_MAX> clients_;
+  Array<modular_server::SubsetMemberType,modular_device_base::constants::CLIENT_COUNT_MAX> client_names_;
+  Array<ModularClient::address_t,modular_device_base::constants::CLIENT_COUNT_MAX> client_addresses_;
   ModularClient dummy_client_;
 
   Watchdog watchdog_;
@@ -87,8 +95,11 @@ private:
   int findClientStreamIndex(size_t stream_id);
   int findClientStreamIndex(Stream & stream);
 
+  void updateClientParameter();
+
   // Handlers
   void forwardToAddressHandler();
+  void forwardToClientHandler();
   void getClientInfoHandler();
   void setClientEnabledHandler(size_t client_index);
   void resetHandler(modular_server::Pin * pin_ptr);

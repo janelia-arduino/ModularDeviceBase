@@ -111,6 +111,12 @@ void ModularDeviceBase::setup()
   request_parameter.setArrayLengthRange(constants::request_array_length_min,constants::request_array_length_max);
   request_parameter.setTypeAny();
 
+  modular_server::Parameter & client_parameter = modular_server_.createParameter(constants::client_parameter_name);
+  client_parameter.setTypeString();
+  client_parameter.setSubset(client_names_.data(),
+    client_names_.max_size(),
+    client_names_.size());
+
   modular_server::Parameter & epoch_time_parameter = modular_server_.createParameter(constants::epoch_time_parameter_name);
   epoch_time_parameter.setRange(constants::epoch_time_min,constants::epoch_time_max);
   epoch_time_parameter.setUnits(constants::seconds_units);
@@ -125,6 +131,12 @@ void ModularDeviceBase::setup()
   forward_to_address_function.addParameter(address_parameter);
   forward_to_address_function.addParameter(request_parameter);
   forward_to_address_function.setResultTypeObject();
+
+  modular_server::Function & forward_to_client_function = modular_server_.createFunction(constants::forward_to_client_function_name);
+  forward_to_client_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::forwardToClientHandler));
+  forward_to_client_function.addParameter(client_parameter);
+  forward_to_client_function.addParameter(request_parameter);
+  forward_to_client_function.setResultTypeObject();
 
   modular_server::Function & get_client_info_function = modular_server_.createFunction(constants::get_client_info_function_name);
   get_client_info_function.attachFunctor(makeFunctor((Functor0 *)0,*this,&ModularDeviceBase::getClientInfoHandler));
@@ -305,6 +317,14 @@ int ModularDeviceBase::findClientStreamIndex(Stream & Stream)
   return stream_index;
 }
 
+void ModularDeviceBase::updateClientParameter()
+{
+  modular_server::Parameter & client_parameter = modular_server_.parameter(constants::client_parameter_name);
+  client_parameter.setSubset(client_names_.data(),
+    client_names_.max_size(),
+    client_names_.size());
+}
+
 // Handlers must be non-blocking (avoid 'delay')
 //
 // modular_server_.parameter(parameter_name).getValue(value) value type must be either:
@@ -331,8 +351,26 @@ void ModularDeviceBase::forwardToAddressHandler()
   ArduinoJson::JsonArray * request_array_ptr;
   modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
 
-  forwardToAddress(*address_array_ptr,*request_array_ptr);
+  bool succeeded = forwardToAddress(*address_array_ptr,*request_array_ptr);
+  if (!succeeded)
+  {
+    modular_server_.response().returnError(constants::unable_to_foward_to_address_error);
+  }
+}
 
+void ModularDeviceBase::forwardToClientHandler()
+{
+  const char * client_c_string;
+  modular_server_.parameter(constants::client_parameter_name).getValue(client_c_string);
+
+  ArduinoJson::JsonArray * request_array_ptr;
+  modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
+
+  bool succeeded = forwardToClient(client_c_string,*request_array_ptr);
+  if (!succeeded)
+  {
+    modular_server_.response().returnError(constants::unable_to_foward_to_client_error);
+  }
 }
 
 void ModularDeviceBase::getClientInfoHandler()
@@ -354,11 +392,8 @@ void ModularDeviceBase::getClientInfoHandler()
     int client_stream_index = findClientStreamIndex(client.getStream());
     if (client_stream_index >= 0)
     {
-      const ConstantString & stream_name = client_streams_[client_stream_index].getName();
-      modular_server_.response().write(constants::stream_string,stream_name);
+      modular_server_.response().write(constants::address_parameter_name,client_addresses_[client_stream_index]);
     }
-
-    modular_server_.response().write(constants::address_parameter_name,client.getAddress());
 
     modular_server_.response().endObject();
   }
