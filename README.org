@@ -73,4 +73,16 @@
 
 * Installation Instructions
 
-  [[https://github.com/janelia-arduino/arduino-libraries]]
+** Arduino IDE
+
+   [[https://github.com/janelia-arduino/arduino-libraries]]
+
+** PlatformIO
+
+   [[https://github.com/janelia-embedded/platformio_setup]]
+
+   #+BEGIN_SRC sh
+     source ~/venvs/platformio/bin/activate
+     platformio run -e teensy32 --target upload
+     platformio run -e teensy35 --target upload
+   #+END_SRC
