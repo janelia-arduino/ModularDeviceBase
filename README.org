@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: ModularDeviceBase
-  - Version :: 5.0.2
+  - Version :: 5.1.0
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/ModularDeviceBase
   - Author :: Peter Polidoro
@@ -83,6 +83,8 @@
 
    #+BEGIN_SRC sh
      source ~/venvs/platformio/bin/activate
-     platformio run -e teensy32 --target upload
+     platformio run -e teensy41 --target upload
+     platformio run -e teensy40 --target upload
      platformio run -e teensy35 --target upload
+     platformio run -e teensy32 --target upload
    #+END_SRC

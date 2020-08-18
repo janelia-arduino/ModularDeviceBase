@@ -79,7 +79,7 @@ void ModularDeviceBase::setup()
 
 #endif
 
-#if defined(__MK64FX512__)
+#if defined(__MK64FX512__) || defined(__IMXRT1062__)
   modular_server_.createPin(constants::btn_b_pin_name,
     constants::btn_b_pin_number);
 
