@@ -29,7 +29,7 @@ CONSTANT_STRING(hardware_name,"modular_device_base");
 const modular_server::HardwareInfo hardware_info =
 {
   .name_ptr=&hardware_name,
-  .part_number=1002,
+  .part_number=1004,
   .version_major=1,
   .version_minor=0,
 };
