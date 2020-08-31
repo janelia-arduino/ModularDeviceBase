@@ -1,20 +1,19 @@
 // ----------------------------------------------------------------------------
-// 4.cpp
+// TEENSY41.cpp
 //
 //
 // Authors:
 // Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
-#include "4.h"
+#include "TEENSY41.h"
 
 
-#if defined(__IMXRT1062__)
-
+#if defined(__IMXRT1062__) && defined(ARDUINO_TEENSY41)
 namespace modular_device_base
 {
 namespace constants
 {
-CONSTANT_STRING(form_factor,"4");
+CONSTANT_STRING(form_factor,"TEENSY41");
 
 CONSTANT_STRING(processor_hardware_name,"Teensy");
 const modular_server::HardwareInfo processor_hardware_info =
@@ -29,7 +28,7 @@ CONSTANT_STRING(hardware_name,"modular_device_base");
 const modular_server::HardwareInfo hardware_info =
 {
   .name_ptr=&hardware_name,
-  .part_number=1004,
+  .part_number=1011,
   .version_major=1,
   .version_minor=0,
 };

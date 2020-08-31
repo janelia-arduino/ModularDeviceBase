@@ -135,7 +135,8 @@ extern ConstantString unable_to_foward_to_client_error;
 extern ConstantString time_not_set_error;
 }
 }
-#include "4.h"
+#include "TEENSY40.h"
+#include "TEENSY41.h"
 #include "5x3.h"
 #include "3x2.h"
 #endif

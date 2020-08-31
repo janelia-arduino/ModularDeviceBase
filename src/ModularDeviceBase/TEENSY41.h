@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// 4.h
+// TEENSY41.h
 //
 //
 // Authors:
@@ -10,8 +10,7 @@
 #include "Constants.h"
 
 
-#if defined(__IMXRT1062__)
-
+#if defined(__IMXRT1062__) && defined(ARDUINO_TEENSY41)
 namespace modular_device_base
 {
 namespace constants
