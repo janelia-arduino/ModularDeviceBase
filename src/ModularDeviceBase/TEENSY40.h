@@ -5,8 +5,8 @@
 // Authors:
 // Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
-#ifndef MODULAR_DEVICE_BASE_4_CONSTANTS_H
-#define MODULAR_DEVICE_BASE_4_CONSTANTS_H
+#ifndef MODULAR_DEVICE_BASE_TEENSY40_CONSTANTS_H
+#define MODULAR_DEVICE_BASE_TEENSY40_CONSTANTS_H
 #include "Constants.h"
 
 
