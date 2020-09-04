@@ -31,14 +31,14 @@ bool ModularDeviceBase::forwardToAddress(T & address_array,
     {
       json_stream.beginArray();
       json_stream.write(modular_device_base::constants::forward_to_address_function_name);
-      json_stream.write(&address_array);
-      json_stream.write(&request_array);
+      json_stream.write(address_array);
+      json_stream.write(request_array);
       json_stream.endArray();
       json_stream.writeNewline();
     }
     else
     {
-      json_stream.write(&request_array);
+      json_stream.write(request_array);
       json_stream.writeNewline();
     }
     modular_server_.response().writeResultKey();

@@ -332,8 +332,8 @@ void ModularDeviceBase::updateClientParameter()
 // floating-point number (float, double)
 // bool
 // const char *
-// ArduinoJson::JsonArray *
-// ArduinoJson::JsonObject *
+// ArduinoJson::JsonArray
+// ArduinoJson::JsonObject
 // const ConstantString *
 //
 // For more info read about ArduinoJson parsing https://github.com/janelia-arduino/ArduinoJson
@@ -345,13 +345,13 @@ void ModularDeviceBase::updateClientParameter()
 
 void ModularDeviceBase::forwardToAddressHandler()
 {
-  ArduinoJson::JsonArray * address_array_ptr;
-  modular_server_.parameter(constants::address_parameter_name).getValue(address_array_ptr);
+  ArduinoJson::JsonArray address_array;
+  modular_server_.parameter(constants::address_parameter_name).getValue(address_array);
 
-  ArduinoJson::JsonArray * request_array_ptr;
-  modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
+  ArduinoJson::JsonArray request_array;
+  modular_server_.parameter(constants::request_parameter_name).getValue(request_array);
 
-  bool succeeded = forwardToAddress(*address_array_ptr,*request_array_ptr);
+  bool succeeded = forwardToAddress(address_array,request_array);
   if (!succeeded)
   {
     modular_server_.response().returnError(constants::unable_to_foward_to_address_error);
@@ -363,10 +363,10 @@ void ModularDeviceBase::forwardToClientHandler()
   const char * client_c_string;
   modular_server_.parameter(constants::client_parameter_name).getValue(client_c_string);
 
-  ArduinoJson::JsonArray * request_array_ptr;
-  modular_server_.parameter(constants::request_parameter_name).getValue(request_array_ptr);
+  ArduinoJson::JsonArray request_array;
+  modular_server_.parameter(constants::request_parameter_name).getValue(request_array);
 
-  bool succeeded = forwardToClient(client_c_string,*request_array_ptr);
+  bool succeeded = forwardToClient(client_c_string,request_array);
   if (!succeeded)
   {
     modular_server_.response().returnError(constants::unable_to_foward_to_client_error);
