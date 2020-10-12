@@ -446,7 +446,7 @@ void ModularDeviceBase::getTimeHandler()
     modular_server_.response().returnError(constants::time_not_set_error);
     return;
   }
-  time_t epoch_time = getTime();
+  unsigned long epoch_time = getTime();
   modular_server_.response().returnResult(epoch_time);
 }
 
