@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 #ifndef MODULAR_DEVICE_BASE_TEENSY40_CONSTANTS_H
 #define MODULAR_DEVICE_BASE_TEENSY40_CONSTANTS_H

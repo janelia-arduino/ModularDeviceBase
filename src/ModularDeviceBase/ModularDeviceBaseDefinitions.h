@@ -3,7 +3,7 @@
 //
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 #ifndef _MODULAR_DEVICE_BASE_DEFINITIONS_H_
 #define _MODULAR_DEVICE_BASE_DEFINITIONS_H_
