@@ -24,7 +24,6 @@ enum{SERIAL_STREAM_COUNT=4};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};
 
 extern HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT];
-extern const size_t serial_rx_pin_numbers[SERIAL_STREAM_COUNT];
 
 extern const size_t client_stream_ids[CLIENT_STREAM_COUNT];
 

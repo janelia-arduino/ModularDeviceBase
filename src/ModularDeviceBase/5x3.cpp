@@ -41,13 +41,6 @@ HardwareSerial * serial_stream_ptrs[SERIAL_STREAM_COUNT] =
   &Serial3,
   &Serial4,
 };
-const size_t serial_rx_pin_numbers[SERIAL_STREAM_COUNT] =
-{
-  0,
-  9,
-  7,
-  31,
-};
 
 const size_t client_stream_ids[CLIENT_STREAM_COUNT] =
 {
