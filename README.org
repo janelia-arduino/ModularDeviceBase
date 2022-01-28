@@ -1,10 +1,10 @@
-Q#+TITLE: ModularDeviceBase
+#+TITLE: ModularDeviceBase
 #+AUTHOR: Peter Polidoro
 #+EMAIL: peter@polidoro.io
 
 * Library Information
   - Name :: ModularDeviceBase
-  - Version :: 6.1.1
+  - Version :: 6.1.2
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/ModularDeviceBase
   - Author :: Peter Polidoro

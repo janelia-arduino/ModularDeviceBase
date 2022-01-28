@@ -27,7 +27,6 @@
 class ModularDeviceBase
 {
 public:
-  ModularDeviceBase();
   virtual void setup();
   virtual void startServer();
   virtual void update();

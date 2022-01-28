@@ -10,16 +10,13 @@
 
 using namespace modular_device_base;
 
-ModularDeviceBase::ModularDeviceBase()
+void ModularDeviceBase::setup()
 {
   // Enable watchdog
   watchdog_.reset();
   watchdog_reset_time_ = millis();
   watchdog_.enable(constants::watchdog_timeout);
-}
 
-void ModularDeviceBase::setup()
-{
   // Server Setup
   modular_server_.setup();
 

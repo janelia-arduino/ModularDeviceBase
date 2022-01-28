@@ -24,7 +24,7 @@ const modular_server::FirmwareInfo firmware_info =
   .name_ptr=&firmware_name,
   .version_major=6,
   .version_minor=1,
-  .version_patch=1,
+  .version_patch=2,
 };
 
 CONSTANT_STRING(response_string,"response");
