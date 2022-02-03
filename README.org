@@ -16,42 +16,50 @@
 
 * API NAMES
 
-  #+BEGIN_SRC js
-    {
-      "id": "getApi",
-      "result": {
-        "firmware": [
-          "ModularDeviceBase"
-        ],
-        "verbosity": "NAMES",
-        "functions": [
-          "forwardToAddress",
-          "forwardToClient",
-          "getClientInfo",
-          "setTime",
-          "getTime",
-          "adjustTime",
-          "now"
-        ],
-        "parameters": [
-          "address",
-          "request",
-          "client",
-          "epoch_time",
-          "adjust_time"
-        ],
-        "properties": [
-          "clientsEnabled",
-          "timeZoneOffset"
-        ],
-        "callbacks": [
-          "reset",
-          "resetClients",
-          "resetAll"
-        ]
+#+BEGIN_SRC js
+
+{
+  "id": "getApi",
+  "result": {
+    "ancestors": [
+      "ModularServer"
+    ],
+    "firmware": [
+      {
+        "name": "ModularDeviceBase",
+        "version": "6.1.2"
       }
-    }
-  #+END_SRC
+    ],
+    "verbosity": "NAMES",
+    "functions": [
+      "forwardToAddress",
+      "forwardToClient",
+      "getClientInfo",
+      "setTime",
+      "getTime",
+      "adjustTime",
+      "now"
+    ],
+    "parameters": [
+      "address",
+      "request",
+      "client",
+      "epoch_time",
+      "adjust_time"
+    ],
+    "properties": [
+      "clientsEnabled",
+      "timeZoneOffset"
+    ],
+    "callbacks": [
+      "reset",
+      "resetClients",
+      "resetAll"
+    ]
+  }
+}
+
+#+END_SRC
 
 * API GENERAL
 

@@ -1,8 +1,14 @@
 {
   "id": "getApi",
   "result": {
+    "ancestors": [
+      "ModularServer"
+    ],
     "firmware": [
-      "ModularDeviceBase"
+      {
+        "name": "ModularDeviceBase",
+        "version": "6.1.2"
+      }
     ],
     "verbosity": "GENERAL",
     "functions": [
