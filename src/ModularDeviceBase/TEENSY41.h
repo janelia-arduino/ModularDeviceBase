@@ -17,7 +17,7 @@ namespace constants
 {
 //MAX values must be >= 1, >= created/copied count, < RAM limit
 enum{PROCESSOR_PIN_COUNT_MAX=1};
-enum{PIN_COUNT_MAX=6};
+enum{PIN_COUNT_MAX=1};
 
 enum{SERIAL_STREAM_COUNT=2};
 enum{CLIENT_STREAM_COUNT=SERIAL_STREAM_COUNT};

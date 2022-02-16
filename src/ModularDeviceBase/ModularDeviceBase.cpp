@@ -55,7 +55,7 @@ void ModularDeviceBase::setup()
 #endif
 
   // Pins
-#if !defined(__AVR_ATmega2560__)
+#if !defined(__IMXRT1062__)
   modular_server_.createPin(constants::bnc_a_pin_name,
     constants::bnc_a_pin_number);
 
@@ -73,14 +73,11 @@ void ModularDeviceBase::setup()
   modular_server::Pin & led_yellow_pin = modular_server_.createPin(constants::led_yellow_pin_name,
     constants::led_yellow_pin_number);
   led_yellow_pin.setModeDigitalOutput();
-
 #endif
 
-#if defined(__MK64FX512__) || defined(__IMXRT1062__)
+#if defined(__MK64FX512__)
   modular_server_.createPin(constants::btn_b_pin_name,
     constants::btn_b_pin_number);
-
-
 #endif
 
   // Add Firmware

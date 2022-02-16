@@ -59,17 +59,6 @@ const ConstantString * const client_stream_name_ptrs[CLIENT_STREAM_COUNT] =
 };
 
 // Pins
-const size_t bnc_a_pin_number = 36;
-
-const size_t bnc_b_pin_number = 37;
-
-const size_t btn_a_pin_number = 26;
-
-const size_t btn_b_pin_number = 27;
-
-const size_t led_green_pin_number = 30;
-
-const size_t led_yellow_pin_number = 31;
 
 // Units
 
