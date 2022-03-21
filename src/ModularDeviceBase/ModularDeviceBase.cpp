@@ -12,16 +12,11 @@ using namespace modular_device_base;
 
 void ModularDeviceBase::setup()
 {
-  // Enable watchdog
-  watchdog_.reset();
-  watchdog_reset_time_ = millis();
-  watchdog_.enable(constants::watchdog_timeout);
-
   // Server Setup
   modular_server_.setup();
 
   // Reset Watchdog
-  resetWatchdog();
+  watchdog_enabled_ = false;
 
   // Variable Setup
   system_reset_ = false;
@@ -175,6 +170,12 @@ void ModularDeviceBase::setup()
 
 void ModularDeviceBase::startServer()
 {
+  // Enable watchdog
+  watchdog_.reset();
+  watchdog_reset_time_ = millis();
+  watchdog_.enable(constants::watchdog_timeout);
+  watchdog_enabled_ = true;
+
   // Start Modular Device Server
   modular_server_.startServer();
 }
@@ -238,8 +239,11 @@ time_t ModularDeviceBase::now()
 
 void ModularDeviceBase::resetWatchdog()
 {
-  watchdog_reset_time_ = millis();
-  watchdog_.reset();
+  if (watchdog_enabled_)
+  {
+    watchdog_reset_time_ = millis();
+    watchdog_.reset();
+  }
 }
 
 bool ModularDeviceBase::timeIsSet()

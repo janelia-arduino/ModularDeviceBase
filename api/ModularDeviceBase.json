@@ -7,7 +7,7 @@
     "firmware": [
       {
         "name": "ModularDeviceBase",
-        "version": "6.1.2"
+        "version": "6.3.0"
       }
     ],
     "verbosity": "GENERAL",

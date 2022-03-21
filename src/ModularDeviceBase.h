@@ -87,6 +87,7 @@ private:
   ModularClient dummy_client_;
 
   Watchdog watchdog_;
+  bool watchdog_enabled_;
   unsigned long watchdog_reset_time_;
   bool system_reset_;
 
